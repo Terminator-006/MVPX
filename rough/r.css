@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.big-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110px;
+  width: 110px;
+  position: relative;
+}
+
+.big-circle::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 50%;
+  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 85%, 50% 50%);
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  
+  border-radius: 50%;
+  background-color: blue;
+}
+
+.circle span {
+  text-align: center;
+}

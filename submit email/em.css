@@ -1,0 +1,210 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Victor Serif';
+  src: url('../Victor Serif/VictorSerifTrial-40Regular.otf');
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  position: relative;
+}
+
+.design {
+  width: 56px;
+  height: 56px;
+  border-radius: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 16px;
+  margin-top: 32px;
+  height: 192px;
+}
+
+.content {
+  width: 100%;
+  max-width: 540px;
+  padding: 16px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  gap: 16px;
+}
+
+.message {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+  font-family: 'Victor Serif';
+}
+
+.message h4 {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.message p {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.input {
+  width: 100%;
+  margin-top: 24px;
+}
+
+input[type="email"] {
+  width: 100%;
+  height: 56px;
+  border-radius: 6px;
+  border: 2px solid grey; /* Default border color */
+  padding: 0 16px;
+  font-size: 16px;
+  color: black;
+  transition: border-color 0.3s ease;
+  font-weight: 400;
+  font-family: 'Victor Serif';
+}
+
+.content input[type="email"] {
+  color: black; /* Ensure text color is black */
+}
+
+.content input:focus {
+  border-radius: 6px;
+  border: 3px solid black; /* Border on focus */
+}
+
+input.error {
+  border: 3px solid red !important; /* Make the red border take precedence */
+}
+
+input.error:focus {
+  border: 3px solid red !important; /* Ensure red border on focus when in error state */
+}
+.error {
+  display: flex;
+  align-items: flex-start;
+  height: 12px;
+  width: 100%;
+  margin-top: 6px; /* Adjust the spacing as needed */
+}
+
+.danger-triangle {
+  width: 14px;
+  height: 12px;
+  margin-right: 4px; /* Adjust the spacing between the SVG and the message */
+  display: none;
+}
+
+.danger-mess {
+  font-size: 12px;
+  line-height: 16px;
+  color: red;
+  display: none; /* Hide the message initially */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 16px 16px 24px 16px;
+  height: 88px;
+  align-items: center;
+  margin-top: 10px;
+  position: relative;
+  bottom: 0;
+}
+
+.button-container button {
+  width: 540px;
+  max-width: 540px;
+  height: 48px;
+  border-radius: 100px;
+  padding: 11px 10px 13px 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: 'Victor Serif';
+  font-weight: 600;
+  opacity: 0.5;
+  cursor: not-allowed;
+  transition: opacity 0.2s, cursor 0.2s;
+}
+
+
+button:enabled {
+  opacity: 1;
+  cursor: pointer;
+}
+.design a{
+  text-decoration: none;
+}
+@media (max-width: 650px) {
+  .container, .button-container button, input[type="email"] {
+      width: 100%;
+  }
+  .container {
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-top: 36px;
+  }
+  .content {
+      padding-left: 8px;
+      padding-right: 8px;
+  }
+  .design {
+     padding:0 16px 0 0 ;
+  }
+
+  .message h4 {
+      font-size: 24px;
+      line-height: 28px;
+  }
+  .message p {
+      font-size: 16px;
+      line-height: 24px;
+  }
+  input[type="email"] {
+      font-size: 14px;
+  }
+  .button-container {
+      width: 100vw;
+  }
+}
+
+/* Additional CSS for filled input */
+input.filled {
+  font-weight: 600;
+  border-color: grey;
+}
+@media (min-height: 320px){
+  .button-container{
+    position:fixed;
+    
+  }
+}

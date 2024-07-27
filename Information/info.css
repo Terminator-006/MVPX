@@ -1,0 +1,300 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Victor Serif';
+  src: url('../Victor Serif/VictorSerifTrial-40Regular.otf');
+}
+
+body,html{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.back a{
+  text-decoration: none;
+}
+.step{
+  position: absolute;
+  top:16px;
+  right:16px;
+  font-family: 'Victor Serif';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 56px;
+  margin-bottom: 56px;
+  width: 540px;
+  max-width: 540px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 170px;
+  width: 540px;
+  gap: 16px;
+}
+
+.icon {
+  height: 48px;
+  width: 48px;
+}
+
+.message {
+  width: 100%;
+  height: 56px;
+}
+
+.message h3 {
+  font-size: 24px;
+  line-height: 28px;
+  font-family: 'Victor Serif';
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.message p {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: 'Victor Serif';
+  font-weight: 400;
+}
+
+.content {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 536px; */
+  overflow-y: auto;
+  gap: 24px;
+  width: 100%;
+  scrollbar-width: none;
+}
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+
+.content input,
+.content select {
+  width: 100%;
+  max-width: 540px;
+  height: 56px;
+  border-radius: 6px;
+  border: 1px solid black;
+  padding: 0 16px;
+  font-size: 16px;
+  color: black;
+  transition: border-color 0.3s ease;
+  font-weight: 400;
+  font-family: 'Victor Serif';
+}
+
+
+select {
+  
+  appearance: none;
+  background: transparent;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 12C2.75 17.108 6.891 21.25 12 21.25C17.108 21.25 21.25 17.108 21.25 12C21.25 6.892 17.108 2.75 12 2.75C6.891 2.75 2.75 6.892 2.75 12Z" stroke="black" stroke-width="1.5" stroke-linecap="square"/><path d="M8.52881 10.5576L11.9998 14.0436L15.4708 10.5576" stroke="black" stroke-width="1.5" stroke-linecap="square"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  
+}
+select::-ms-expand {
+  display: none;
+}
+
+
+.content input:focus,
+.content select:focus {
+  border-radius: 3px;
+  border: 3px solid black;
+}
+
+.content input.filled,
+.content select.filled {
+  border: 2px solid grey; /* Updated border for filled state */
+}
+
+.content input,
+.content select {
+  color: black; /* Ensure text color is black */
+}
+.content select option {
+  color: black;
+}
+/* Add this style to give padding to the select options */
+.content select option {
+  padding: 16px;
+}
+
+/* Add a red asterisk for required fields */
+/* info.css */
+.iti {
+  width: 100%;
+}
+
+/* .iti input {
+  width: 100%;
+} */
+
+
+/* info.css */
+.em-error {
+  display: none;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  color: #DC0000;
+  margin-top:-24px;
+}
+
+.danger-mess {
+  display: flex;
+  
+}
+
+.danger-mess svg {
+  margin-right: 5px; /* Adjust as needed */
+  width: 12px;      /* Adjust the size as needed */
+  height: 12px;   
+  margin-top: 2px;
+  fill: #DC0000;    /* Set the fill color as needed */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 16px 16px 24px 16px;
+  height: 88px;
+  align-items: center;
+  margin-top: 10px;
+  position: relative;
+  bottom: 0;
+}
+
+.button-container button {
+  width: 540px;
+  max-width: 540px;
+  height: 48px;
+  border-radius: 100px;
+  padding: 11px 10px 13px 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: 'Victor Serif';
+  font-weight: 600;
+  opacity: 0.5;
+  cursor: not-allowed;
+  transition: opacity 0.2s, cursor 0.2s;
+}
+
+button:enabled {
+  opacity: 1;
+  cursor: pointer;
+}
+
+@media(max-width:550px){
+  .heading {
+    width: 100vw;
+}
+.message {
+    width: 70vw;
+    white-space: nowrap;
+}
+.container {
+    width: 100vw;
+}
+.content {
+    width: 100vw;
+}
+.content input,
+.content select {
+    width: 94.6vw;
+}
+.button-container button{
+  width:94.6vw;
+}
+
+
+}
+@media (min-height: 850px){
+  .button-container{
+    position:fixed;
+    
+  }
+}
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

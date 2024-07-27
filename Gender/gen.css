@@ -1,0 +1,266 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: 'Victor Serif';
+  src: url('../Victor Serif/VictorSerifTrial-40Regular.otf');
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  position: relative;
+}
+.back{
+  width: 56px;
+  height: 56px;
+  border-radius: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  max-width:540px;
+  margin-top:56px;
+  padding:16px;
+}
+
+.heading{
+  font-family: 'Victor Serif';
+  height:56px;
+  width:540px;
+  margin-bottom: 24px;
+}
+.heading h4{
+  font-size:24px;
+  line-height: 28px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.heading p{
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.content{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap:24px;
+  width:540px;
+  height:320px;
+}
+
+.gender{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.gender p{
+  font-family: 'Victor Serif';
+  font-size:16px;
+  font-weight:400;
+  line-height:24px;
+  margin-bottom:16px;
+}
+
+.checklist{
+  display:flex;
+  flex-direction: column;
+}
+.checklist label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px; /* Space between each item */
+  color:rgba(0, 0, 0, 0.48);
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  vertical-align: middle;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  border: 2px solid black;
+  cursor: pointer;
+  position: relative;
+  margin-right: 4px; /* Add space between checkbox and label text */
+}
+
+input[type="checkbox"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Victor Serif';
+  font-weight: 400;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.checklist label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checklist label svg {
+  margin-right: 8px;
+  display: none;
+}
+
+input[type="checkbox"] + svg.unchecked {
+  display: inline;
+}
+
+input[type="checkbox"]:checked + svg.unchecked {
+  display: none;
+}
+
+input[type="checkbox"]:checked + svg.checked {
+  display: inline;
+}
+
+input[type="checkbox"] + svg.checked {
+  display: none;
+}
+
+.sexuality{
+  display:flex;
+  flex-direction: column;
+  gap:24px;
+}
+
+.sexuality select{
+  width:540px;
+  border:1px solid black;
+  border-radius:6px;
+  padding:16px;
+}
+select {
+  appearance: none;
+  background: transparent;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 12C2.75 17.108 6.891 21.25 12 21.25C17.108 21.25 21.25 17.108 21.25 12C21.25 6.892 17.108 2.75 12 2.75C6.891 2.75 2.75 6.892 2.75 12Z" stroke="black" stroke-width="1.5" stroke-linecap="square"/><path d="M8.52881 10.5576L11.9998 14.0436L15.4708 10.5576" stroke="black" stroke-width="1.5" stroke-linecap="square"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  
+}
+select::-ms-expand {
+  display: none;
+}
+select, input[type="text"] {
+  color: black;
+}
+
+/* Placeholder styling for when nothing is selected */
+select:invalid, input[type="text"]:placeholder-shown {
+  font-weight: normal;
+  color: black;
+}
+
+/* Styling for when an option is selected or input has value */
+select.selected, input[type="text"]:not(:placeholder-shown) {
+  font-weight: bold;
+  color: black; /* Ensure selected text is black */
+  border: 2px solid grey; /* Border change when an option is selected */
+}
+
+.sexuality input{
+  width:540px;
+  border:1px solid black;
+  border-radius: 6px;
+  padding:16px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 16px 16px 24px 16px;
+  height: 88px;
+  align-items: center;
+  margin-top: 10px;
+  position: relative;
+  bottom: 0;
+}
+
+.button-container button {
+  width: 540px;
+  max-width: 540px;
+  height: 48px;
+  border-radius: 100px;
+  padding: 11px 10px 13px 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: 'Victor Serif';
+  font-weight: 600;
+  opacity: 0.5;
+  cursor: not-allowed;
+  transition: opacity 0.2s, cursor 0.2s;
+}
+
+button:enabled {
+  opacity: 1;
+  cursor: pointer;
+}
+.design a{
+  text-decoration: none;
+}
+
+@media(max-width:572px){
+  .container{
+    width:100vw;
+  }
+
+  .heading,.content{
+    width:100%;
+  }
+
+  .sexuality{
+    width:100%;
+  }
+
+  .sexuality select, .sexuality input{
+    width:100%;
+  }
+
+  .button-container{
+    width:100%;
+  }
+
+}
+
+@media (min-height: 850px){
+  .button-container{
+    position:fixed;
+    
+  }
+}
+
+

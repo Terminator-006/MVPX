@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    position: relative;
+    overflow-x: hidden;
+}
+
+@font-face {
+    font-family: 'Victor Serif';
+    src: url('../Victor Serif/VictorSerifTrial-40Regular.otf');
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.step{
+  position: absolute;
+  top:16px;
+  right:16px;
+  font-family: 'Victor Serif';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 56px;
+    margin-bottom:88px;
+    width:540px;
+    max-width:540px;
+    height: 568px;
+}
+
+.heading {
+    position: relative;
+    height: 120px;
+    width: 100%;
+    margin: 16px;
+
+}
+
+.icon {
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);  
+    height: 48px;
+    width: 48px;
+}
+
+.message {
+    height: 56px;
+    width: 100%;
+    gap: 4px;
+    margin-top: 24px; 
+    font-family: 'Victor Serif';
+}
+
+.message h3 {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 600;
+     /* margin-bottom:4px; */
+}
+
+.message p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.content {
+    /* height: 392px; */
+    width:100%;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: aut;
+}
+
+.first-inp {
+    width: 100%;
+    height: 56px;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 16px;
+    box-sizing: border-box;
+    margin-top:8px;
+}
+
+.luxury-items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 16px 0px 0px 0px;
+    gap: 16px;
+    align-items: flex-start;
+    font-family: 'Victor Serif';
+}
+
+.luxury-items p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.checklist {
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+    /* gap: 16px; */
+    margin-top: 8px;
+}
+.checklist label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px; /* Space between each item */
+    color:rgba(0, 0, 0, 0.48);
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    border: 2px solid black;
+    cursor: pointer;
+    position: relative;
+    margin-right: 8px; /* Add space between checkbox and label text */
+}
+
+input[type="checkbox"]:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Victor Serif';
+    font-weight: 400;
+}
+.content input[type="date"], .content select {
+    color: black; /* Ensure text color is black */
+  }
+.content input:focus {
+    border-radius: 3px;
+    border: 1px solid black;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    padding: 16px 16px 24px 16px;
+    height: 88px;
+    align-items: center;
+    margin-top: 10px;
+    position: relative;
+    bottom: 0;
+  }
+  input[type="checkbox"] {
+    display: none;
+}
+
+.checklist label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checklist label svg {
+    margin-right: 8px;
+    display: none;
+}
+
+input[type="checkbox"] + svg.unchecked {
+    display: inline;
+}
+
+input[type="checkbox"]:checked + svg.unchecked {
+    display: none;
+}
+
+input[type="checkbox"]:checked + svg.checked {
+    display: inline;
+}
+
+input[type="checkbox"] + svg.checked {
+    display: none;
+}
+
+  
+  .button-container button {
+    width: 540px;
+    max-width: 540px;
+    height: 48px;
+    border-radius: 100px;
+    padding: 11px 10px 13px 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Victor Serif';
+    font-weight: 600;
+    opacity: 0.5;
+    cursor: not-allowed;
+    transition: opacity 0.2s, cursor 0.2s;
+  }
+  
+  button:enabled {
+    opacity: 1;
+    cursor: pointer;
+  }
+  .back a{
+    text-decoration: none;
+  }
+
+@media(max-width: 572px){
+    .heading {
+        width: 100vw;
+      }
+      .message {
+        width: 100vw;
+        white-space: nowrap;
+      }
+      /* .message h3 {
+        font-size: 20px;
+      }
+      .message p {
+        font-size: 12px;
+      } */
+      .container {
+        width: 100vw;
+      }
+      .content {
+        width: 100vw;
+      }
+      .first-inp{
+        width: 94.6vw;
+      }
+      .luxury-items{
+        width:94.6vw;
+      }
+      .button-container {
+        width: 100vw;
+        /* padding-left:0;
+        padding-right:0; */
+      }
+      .button-container button{
+        width: 94.6%;
+      }
+}
+input.filled {
+    font-weight: 600;
+    border-color: grey;
+  }
+ @media(min-height:800px){
+  .button-container{
+    position:fixed;
+  }
+ }
+
+/*final*/

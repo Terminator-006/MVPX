@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email Validation</title>
+  <link rel="stylesheet" href="em.css">
+</head>
+<body>
+  <div class="design">
+    <a href="../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M37 27H24.661C25.882 25.778 26.66 24.114 26.66 22.34V21.34H24.66V22.34C24.66 24.779 22.438 27 20 27H19V29H20C22.438 29 24.66 31.221 24.66 33.66V34.66H26.66V33.66C26.66 31.886 25.882 30.222 24.661 29H37V27Z" fill="black"/>
+    </svg>
+  </a>
+  </div>
+  <div class="container">
+    <div class="content">
+      <div class="message">
+        <h4>Verify email</h4>
+        <p>We will share your membership details on this email</p>
+      </div>
+      <div class="input">
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <div class="error" id="error">
+          <svg class="danger-triangle" xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.51041 11.7023H7.51041L7.50441 10.7023H8.51041V11.7023ZM7.50908 9.84431H8.50908V6.97698H7.50908V9.84431ZM8.24241 2.13965H7.75641L1.43774 13.2256L1.87508 13.8603H14.0871L14.5624 13.235L8.24241 2.13965Z" fill="#DC0000"/>
+          </svg>
+          <p class="danger-mess" id="error-message">Please enter a valid email id</p>
+        </div>
+        
+        
+    </div>
+  </div>
+  
+  <div class="button-container">
+    <button class="button" id="next-button" disabled>Next</button>
+  </div>
+  
+  <script src="em.js"></script>
+</body>
+</html>

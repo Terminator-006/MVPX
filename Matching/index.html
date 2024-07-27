@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching</title>
+    <link rel="stylesheet" href="match.css"/>
+</head>
+<body>
+    <div class="back">
+        <a href="../Reference details/index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M37 27H24.661C25.882 25.778 26.66 24.114 26.66 22.34V21.34H24.66V22.34C24.66 24.779 22.438 27 20 27H19V29H20C22.438 29 24.66 31.221 24.66 33.66V34.66H26.66V33.66C26.66 31.886 25.882 30.222 24.661 29H37V27Z" fill="black"/>
+          </svg>
+        </a>
+    </div>
+    <div class="step">
+        Step 7 of 8
+    </div>
+    <div class="container">
+        <div class="heading">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="48" viewBox="0 0 80 48" fill="none">
+                    <path d="M42.2858 17.0514C41.6481 12.0199 38.4258 7.61009 33.013 6.57203C29.296 5.85727 25.4803 6.97707 22.9889 11.6908C19.4311 7.71981 15.4578 7.55638 12.0242 9.14914C7.02278 11.4661 4.96312 16.5253 5.56219 21.5622C6.74338 31.5804 17.8295 37.9962 26.5413 40.6437L26.5437 40.6423L26.5464 40.6431C34.3593 35.9664 43.5646 27.0583 42.2858 17.0514Z" stroke="black" stroke-width="3" stroke-linecap="square"/>
+                    <path opacity="0.4" d="M31.9864 22.5801C30.446 25.2258 27.7066 27.3659 24.5391 27.3111C21.3716 27.3659 18.6322 25.2258 17.0918 22.5801" stroke="black" stroke-width="3" stroke-linecap="square"/>
+                    <path d="M74.4778 21.8912C75.1639 16.8661 73.1928 11.7726 68.2331 9.36896C64.8278 7.71652 60.8523 7.81058 57.2257 11.7189C54.817 6.96238 51.0214 5.77615 47.2925 6.42594C41.8618 7.36948 38.5629 11.7232 37.8379 16.7436C36.386 26.7261 45.4338 35.7926 53.1635 40.6047L53.1662 40.6039L53.1686 40.6054C61.9257 38.1102 73.123 31.8882 74.4778 21.8912Z" stroke="black" stroke-width="3" stroke-linecap="square"/>
+                    <path opacity="0.4" d="M62.9864 22.5801C61.446 25.2258 58.7066 27.3659 55.5391 27.3111C52.3716 27.3659 49.6322 25.2258 48.0918 22.5801" stroke="black" stroke-width="3" stroke-linecap="square"/>
+                    </svg>
+            </div>
+            <div class="message">
+                <h3>Matching Preferences</h3>
+                <p>Description Text</p>
+            </div>
+        </div>
+        <form id="preferences-form">
+            <div class="content">
+                <div class="multiselect">
+                    <input type="text" id="TravelPreference" class="select-field" placeholder="Activities with other couples*" readonly>
+                    <div class="dropdown-content">
+                        <div class="checkbox">
+                            <input type="checkbox" id="travel1" value="Dining">
+                            <label for="travel1">Dining</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="travel2" value="Clubbing">
+                            <label for="travel2">Clubbing</label>
+                        </div>
+                    </div>
+                    <div class="dropdown-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.75 12C2.75 17.108 6.891 21.25 12 21.25C17.108 21.25 21.25 17.108 21.25 12C21.25 6.892 17.108 2.75 12 2.75C6.891 2.75 2.75 6.892 2.75 12Z"
+                                stroke="black" stroke-width="1.5" stroke-linecap="square" />
+                            <path d="M8.52881 10.5576L11.9998 14.0436L15.4708 10.5576" stroke="black" stroke-width="1.5"
+                                stroke-linecap="square" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- Repeat for other categories -->
+                <div class="multiselect">
+                    <input type="text" id="CulturePreference" class="select-field" placeholder="Age Range of other couples*" readonly>
+                    <div class="dropdown-content">
+                        <div class="checkbox">
+                            <input type="checkbox" id="cul1" value="20-30">
+                            <label for="cul1">20-30</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="cul2" value="30-40">
+                            <label for="cul2">30-40</label>
+                        </div>
+                    </div>
+                    <div class="dropdown-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.75 12C2.75 17.108 6.891 21.25 12 21.25C17.108 21.25 21.25 17.108 21.25 12C21.25 6.892 17.108 2.75 12 2.75C6.891 2.75 2.75 6.892 2.75 12Z"
+                                stroke="black" stroke-width="1.5" stroke-linecap="square" />
+                            <path d="M8.52881 10.5576L11.9998 14.0436L15.4708 10.5576" stroke="black" stroke-width="1.5"
+                                stroke-linecap="square" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="multiselect">
+                    <input type="text" id="DiningPreference" class="select-field" placeholder="Frequency of Interaction*" readonly>
+                    <div class="dropdown-content">
+                        <div class="checkbox">
+                            <input type="checkbox" id="din1" value="Weekly">
+                            <label for="din1">Weekly</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="din2" value="Monthly">
+                            <label for="din2">Monthly</label>
+                        </div>
+                    </div>
+                    <div class="dropdown-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.75 12C2.75 17.108 6.891 21.25 12 21.25C17.108 21.25 21.25 17.108 21.25 12C21.25 6.892 17.108 2.75 12 2.75C6.891 2.75 2.75 6.892 2.75 12Z"
+                                stroke="black" stroke-width="1.5" stroke-linecap="square" />
+                            <path d="M8.52881 10.5576L11.9998 14.0436L15.4708 10.5576" stroke="black" stroke-width="1.5"
+                                stroke-linecap="square" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="multiselect">
+                    <input type="text" id="Hobbies" class="select-field" placeholder="Favoured Mode of Communication*" readonly>
+                    <div class="dropdown-content">
+                        <div class="checkbox">
+                            <input type="checkbox" id="hob1" value="Text">
+                            <label for="hob1">Text</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="hob2" value="Call">
+                            <label for="hob2">Call</label>
+                        </div>
+                    </div>
+                    <div class="dropdown-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.75 12C2.75 17.108 6.891 21.25 12 21.25C17.108 21.25 21.25 17.108 21.25 12C21.25 6.892 17.108 2.75 12 2.75C6.891 2.75 2.75 6.892 2.75 12Z"
+                                stroke="black" stroke-width="1.5" stroke-linecap="square" />
+                            <path d="M8.52881 10.5576L11.9998 14.0436L15.4708 10.5576" stroke="black" stroke-width="1.5"
+                                stroke-linecap="square" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="multiselect">
+                    <input type="text" id="FitnessPreference" class="select-field" placeholder="Meeting Place*" readonly>
+                    <div class="dropdown-content">
+                        <div class="checkbox">
+                            <input type="checkbox" id="fit1" value="Cafe">
+                            <label for="fit1">Cafe</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="fit2" value="Restaurant">
+                            <label for="fit2">Restaurant</label>
+                        </div>
+                    </div>
+                    <div class="dropdown-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.75 12C2.75 17.108 6.891 21.25 12 21.25C17.108 21.25 21.25 17.108 21.25 12C21.25 6.892 17.108 2.75 12 2.75C6.891 2.75 2.75 6.892 2.75 12Z"
+                                stroke="black" stroke-width="1.5" stroke-linecap="square" />
+                            <path d="M8.52881 10.5576L11.9998 14.0436L15.4708 10.5576" stroke="black" stroke-width="1.5"
+                                stroke-linecap="square" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+           
+        </form>
+    </div>
+    <div class="button-container">
+        <button type="submit" class="button" id="next-button" disabled>Next</button>
+    </div>
+    
+    <!-- popup when button clicked -->
+     
+</body>
+<script src="match.js"></script>
+</html>

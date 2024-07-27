@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reference</title>
+    <link rel="stylesheet" href="refer.css"/>
+</head>
+<body>
+    <div class="back">
+        <a href="../Financial/index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M37 27H24.661C25.882 25.778 26.66 24.114 26.66 22.34V21.34H24.66V22.34C24.66 24.779 22.438 27 20 27H19V29H20C22.438 29 24.66 31.221 24.66 33.66V34.66H26.66V33.66C26.66 31.886 25.882 30.222 24.661 29H37V27Z" fill="black"/>
+        </svg>
+    </a>
+    </div>
+    <div class="step">
+        Step 3 of 8
+    </div>
+    <div class="container">
+        <div class="heading">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 43V34.2202" stroke="black" stroke-width="3" stroke-linecap="square"/>
+                    <path d="M18.559 43H29.4395" stroke="black" stroke-width="3" stroke-linecap="square"/>
+                    <path d="M41.0098 23.9995V15.2197" stroke="black" stroke-width="3" stroke-linecap="square"/>
+                    <path d="M6.99023 24V15.2202" stroke="black" stroke-width="3" stroke-linecap="square"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M24.0008 34.2198C19.2676 34.2198 15.4297 30.3663 15.4297 25.6111V13.6109C15.4297 8.85569 19.2676 5 24.0008 5C28.7362 5 32.5718 8.85569 32.5718 13.6109V25.6111C32.5718 30.3663 28.7362 34.2198 24.0008 34.2198Z" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="message">
+                <h3>Reference Details</h3>
+                <p>Description Text</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="custom-select">
+                <select id="how-heard" required>
+                    <option value="" disabled selected hidden>How did you hear about Regnum?</option>
+                    <option value="social-media">Social media</option>
+                    <option value="friend">From a friend</option>
+                </select>
+                <div class="custom-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 12C2.75 17.108 6.891 21.25 12 21.25C17.108 21.25 21.25 17.108 21.25 12C21.25 6.892 17.108 2.75 12 2.75C6.891 2.75 2.75 6.892 2.75 12Z" stroke="black" stroke-width="1.5" stroke-linecap="square"/>
+                        <path d="M8.52881 10.5576L11.9998 14.0436L15.4708 10.5576" stroke="black" stroke-width="1.5" stroke-linecap="square"/>
+                    </svg>
+                </div>
+            </div>
+            <input type="text" id="references" placeholder="References or Endorsements" required />
+            <input type="text" id="reference-name" placeholder="Name of Reference" required />
+            <input type="number" id="reference-phone" placeholder="Phone Number of Reference" required />
+        </div>
+    </div>
+    <div class="button-container">
+        <button class="button" id="next-button" >Next</button>
+    </div>
+     <!-- popup when button clicked -->
+     <div class="background-overlay" id="bgol">
+        <div id="overlay" class="overlay">
+             
+                <div class="popup-content">
+                    <span>Disclaimer!!!</span>
+                    <p>If you'll not provide<br> complete details there are<br>99% chances of your<br> profile rejection</p>
+                </div>
+                <div class="close-button">
+                    <button id="closePopup" class="close-popup-button">Got it</button>
+                </div>
+            
+        </div>
+    </div>
+
+    <script src="refer.js"></script>
+</body>
+</html>

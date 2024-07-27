@@ -1,0 +1,306 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: 'Victor Serif';
+  src: url('../Victor Serif/VictorSerifTrial-40Regular.otf');
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.step{
+  position: absolute;
+  top:16px;
+  right:16px;
+  font-family: 'Victor Serif';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 56px;
+  margin-bottom: 184px;
+  width: 540px;
+  max-width: 540px;
+  height: 472px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 148px;
+  width: 540px;
+  gap: 16px;
+}
+
+.icon {
+  height: 48px;
+  width: 48px;
+}
+
+.message {
+  width: 100%;
+  height: 56px;
+}
+
+.message h3 {
+  font-size: 24px;
+  line-height: 28px;
+  font-family: 'Victor Serif';
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.message p {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: 'Victor Serif';
+  font-weight: 400;
+}
+
+.content {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 296px;
+  gap: 24px;
+  width: 100%;
+}
+
+.content input,
+.content select {
+  width: 100%;
+  max-width: 540px;
+  height: 56px;
+  border: 1px solid black; /* Default border */
+  border-radius: 6px;
+  padding: 16px;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400; /* Default font weight */
+  font-family: 'Victor Serif';
+  appearance: none; /* Remove default arrow */
+  background: none;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  height: 56px;
+}
+
+.custom-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Ignore pointer events */
+}
+
+.content input:focus,
+.content select:focus {
+  border: 3px solid black; /* Border on focus */
+}
+
+/* Filled state */
+.content input:not(:placeholder-shown),
+.content select:valid {
+  border: 2px solid rgba(0, 0, 0, 0.48); /* Filled state border */
+  font-weight: 800; /* Font weight when filled */
+}
+
+.content select option {
+  color: black;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 16px 16px 24px 16px;
+  height: 88px;
+  align-items: center;
+  margin-top: 10px;
+  position: relative;
+  bottom: 0;
+}
+
+.button-container button {
+  width: 540px;
+  max-width: 540px;
+  height: 48px;
+  border-radius: 100px;
+  padding: 11px 10px 13px 10px;
+  background-color: grey;
+  color: white;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: 'Victor Serif';
+  font-weight: 600;
+  opacity: 0.5;
+  cursor: not-allowed;
+  transition: opacity 0.2s, cursor 0.2s;
+}
+
+.button-container button:hover{
+  background-color: black;
+}
+
+button:enabled {
+  opacity: 1;
+  cursor: pointer;
+}
+.back a{
+  text-decoration: none;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 328px;
+  height: 280px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+  border-radius: 16px;
+  padding: 24px 16px 24px 16px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.popup-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.popup-content span {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  font-family: 'Victor Serif';
+  margin-bottom: 16px;
+}
+
+.popup-content p {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 600;
+  font-family: 'Victor Serif';
+  white-space: nowrap;
+}
+
+.close-button {
+  margin-top: 32px;
+}
+
+.close-popup-button {
+  height: 48px;
+  width: 290px;
+  background-color: grey;
+  color: #ffffff;
+  border: none;
+  padding: 11px 10px 13px 10px;
+  font-size: 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.close-popup-button:hover {
+  background-color: black;
+}
+
+.background-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+@media (max-width: 572px) {
+  .heading {
+      width: 100vw;
+  }
+
+  .message {
+      width: 70vw;
+      white-space: nowrap;
+  }
+
+  .container {
+      width: 100vw;
+  }
+
+  .content {
+      width: 100vw;
+  }
+
+  .content input,
+  .content select {
+      width: 94.6vw;
+  }
+
+  .button-container button{
+      width: 94.6vw;
+  }
+  .background-overlay{
+    width:100vw;
+  }
+
+  .overlay{
+    max-width: 328px;
+    width:94.6vw;
+  }
+
+  .close-popup-button{
+    max-width: 290px;
+    width:85vw;
+  }
+}
+
+@media (min-height:800px){
+  .button-container{
+    position: fixed;
+  }
+}

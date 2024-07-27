@@ -1,0 +1,177 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+
+
+body,html{
+
+    height: 100%;
+    width: 100%;
+    
+    background-color: white;
+    
+}
+
+@font-face {
+    font-family: 'Victor Serif';
+    src: url('../Victor Serif/VictorSerifTrial-40Regular.otf');
+  }
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:'Victor Serif';
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border-bottom: 1px solid black;
+    height:56px;
+
+
+}
+
+
+.elements {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* position: fixed; */
+    top: 60px;
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    max-width: 540px;
+    height: calc(100% - 80px);
+    padding: 20px;
+    /* background-color: white; */
+    overflow: hidden; /* Hide the scrollbar */
+    width: 90%;
+    margin: auto;
+    font-family: 'Victor Serif';
+    
+}
+
+.elements-content {
+    overflow-y: scroll;
+    /* Adjust padding to prevent content from being cut off */
+    height: 100%;
+    
+    
+}
+ h1{
+    font-size:24px;
+    line-height: 24px;
+    font-weight: 600;
+ }
+h3 {
+    color: black;
+    margin-top: 20px;
+    font-size: 20px;
+}
+h4{
+    margin-top:16px;
+    font-size: 20px;
+    
+}
+
+p, ul {
+    color: #656565;
+    margin: 10px 0;
+    padding: 10px;
+    font-size:20px;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+.elements-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+.elements-content {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.back{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index:100;
+    height:56px;
+    width: 56px;
+}
+
+
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding: 16px 16px 24px 16px;
+    height: 88px;
+    align-items: center;
+    margin-top: 10px;
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+  }
+  
+  .button-container button {
+    width: 540px;
+    max-width: 540px;
+    height: 48px;
+    border-radius: 100px;
+    padding: 11px 10px 13px 10px;
+    background-color: grey;
+    color: white;
+    border: none;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Victor Serif';
+    font-weight: 600;
+    cursor:pointer;
+  }
+ 
+  button:hover{
+    background-color: black;
+  }
+
+/* Media query for responsiveness */
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+    .title {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .title h1 {
+        margin-left: 4.2vh;
+        font-size: 3vh;
+        
+    }
+
+    h3 {
+        
+        margin-top: 15px;
+    }
+    
+    
+}
+
+
+
+    
+ 
