@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             otp += val;
-            target.value = '.';
+            target.value = '*';
 
             if (val !== "") {
                 const next = target.nextElementSibling;

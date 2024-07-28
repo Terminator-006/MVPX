@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     timeoutId = setTimeout(function () {
       validateEmail(email);
-    }, 1000);
+    }, 500);
   });
 
   function validateEmail(email) {
