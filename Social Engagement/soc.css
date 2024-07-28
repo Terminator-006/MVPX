@@ -148,6 +148,30 @@ select::-ms-expand {
   color: black;
 }
 
+.em-error {
+  display: none;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  color: #DC0000;
+  margin-top:-24px;
+}
+
+.danger-mess {
+  display: flex;
+  
+}
+
+.danger-mess svg {
+  margin-right: 5px; /* Adjust as needed */
+  width: 12px;      /* Adjust the size as needed */
+  height: 12px;   
+  margin-top: 2px;
+  fill: #DC0000;    /* Set the fill color as needed */
+}
+
+
+
 .button-container {
   display: flex;
   justify-content: center;
@@ -165,7 +189,7 @@ select::-ms-expand {
   height: 48px;
   border-radius: 100px;
   padding: 11px 10px 13px 10px;
-  background-color: black;
+  background-color: grey;
   color: white;
   border: none;
   font-size: 16px;
@@ -175,6 +199,10 @@ select::-ms-expand {
   opacity: 0.5;
   cursor: not-allowed;
   transition: opacity 0.2s, cursor 0.2s;
+}
+
+button:hover{
+  background-color: black;
 }
 
 button:enabled {

@@ -5,18 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const popup = document.getElementById('overlay');
     const backgroundOverlay = document.getElementById('bgol');
     const closePopupButton = document.getElementById('closePopup');
+    const error = document.getElementById('em-error');
 
     function checkInputs() {
-        if (instagramIdInput.value) {
-            nextButton.disabled = false;
-            nextButton.style.opacity = '1';
-            nextButton.style.cursor = 'pointer';
-        } else {
-            nextButton.disabled = true;
-            nextButton.style.opacity = '0.5';
-            nextButton.style.cursor = 'not-allowed';
-        }
-
         inputs.forEach(input => {
             if (input.value) {
                 input.classList.add('filled');
@@ -72,7 +63,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    let flag = true;
+    // Hide error message when user starts typing in Instagram ID input
+    instagramIdInput.addEventListener('input', function () {
+        error.style.display = 'none';
+        instagramIdInput.style.border = ''; // Reset the border if it's filled
+    });
+
+    let popupDisplayed = false;
     nextButton.addEventListener('click', function () {
         const degreeSelect = document.querySelector('select:nth-of-type(1)').value;
         const almaMaterInput = document.querySelector('input:nth-of-type(1)').value;
@@ -82,14 +79,40 @@ document.addEventListener('DOMContentLoaded', function () {
         const visaNumberInput = document.querySelector('input:nth-of-type(4)').value;
         const email = localStorage.getItem("userEmail");
 
+        // Check if Instagram ID input is empty and set border color to red if it is
+        if (!instagramIdInput.value) {
+            instagramIdInput.style.border = '2px solid red';
+            error.style.display = 'flex';
+            return; // Prevent form submission if Instagram ID is empty
+        } else {
+            instagramIdInput.style.border = ''; // Reset the border if it's filled
+            error.style.display = 'none';
+        }
+
+        // Check if any other inputs are empty
         if (!degreeSelect || !almaMaterInput || !membershipSelect || !registrationNumberInput || !exoticPlaceInput || !visaNumberInput) {
-            if (flag) {
+            if (!popupDisplayed) {
                 backgroundOverlay.style.display = 'flex';
                 popup.style.display = 'flex';
-                flag = false;
+                popupDisplayed = true;
+            } else {
+                // Submit the form and change the page
+                submitFormAndRedirect();
             }
-            return; // Prevent form submission if fields are not valid
+            return; // Prevent form submission if other fields are not valid
         }
+
+        submitFormAndRedirect();
+    });
+
+    function submitFormAndRedirect() {
+        const degreeSelect = document.querySelector('select:nth-of-type(1)').value;
+        const almaMaterInput = document.querySelector('input:nth-of-type(1)').value;
+        const membershipSelect = document.querySelector('select:nth-of-type(2)').value;
+        const registrationNumberInput = document.querySelector('input:nth-of-type(2)').value;
+        const exoticPlaceInput = document.querySelector('input:nth-of-type(3)').value;
+        const visaNumberInput = document.querySelector('input:nth-of-type(4)').value;
+        const email = localStorage.getItem("userEmail");
 
         const data = {
             email: email,
@@ -164,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }).catch(error => {
             console.error('Error updating user information:', error);
         });
-    });
+    }
 
     closePopupButton.addEventListener('click', function () {
         backgroundOverlay.style.display = 'none';
