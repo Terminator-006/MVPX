@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const email = localStorage.getItem('userEmail');
 
     document.getElementById("message").innerHTML = `Sent to <span style="font-weight: bold; color: green;">${email}</span>`;
-    
+
     nextButton.addEventListener('click', async function () {
         if (!nextButton.disabled) {
             console.log(otp);
@@ -26,9 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (response.ok) {
                     showSuccessMessage();
-                    
-                    // Change input borders to green
-                
 
                     // Create an entry in the database after OTP verification
                     const createUserEntryResponse = await fetch('https://regnum-backend-bice.vercel.app/update-details', {
@@ -110,23 +107,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function showErrorMessage() {
+function showErrorMessage(message) {
     console.log('hi');
     const errorDiv = document.getElementById('error');
     const inp = document.getElementById('harshit');
     errorDiv.style.display = 'flex'; // Make sure the error div is visible
-    inp.style.border ='3px solid red';
-
+    inp.style.border = '3px solid red';
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.innerText = message || 'Error occurred';
+    errorMessage.style.color = 'red';
 }
 
-function showSuccessMessage(){
+function showSuccessMessage() {
     console.log('hi');
     const errorDiv = document.getElementById('error');
-    const success = document.getElementById('error-message');
+    const successMessage = document.getElementById('error-message');
     const inp = document.getElementById('harshit');
     errorDiv.style.display = 'flex'; // Make sure the error div is visible
-    inp.style.border ='3px solid green';
-    success.innerText ='OTP verified succesfully';
-    success.innerText.style.color ='green';
-
+    inp.style.border = '3px solid green';
+    successMessage.innerText = 'OTP verified successfully';
+    successMessage.style.color = 'green';
 }
