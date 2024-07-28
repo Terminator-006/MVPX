@@ -6,7 +6,12 @@
     <title>Information</title>
     <link rel="stylesheet" href="../phone-number-validation-master/build/css/demo.css" />
     <link rel="stylesheet" href="../phone-number-validation-master/build/css/intlTelInput.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <link rel="stylesheet" href="info.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    
   </head>
   <body>
     <div class="back">
@@ -96,7 +101,10 @@
             Invalid phone number
           </p>
         </div>
-        <input type="date" placeholder="Date of Birth" class="date-input" id="dob" />
+        <div class="date-input-container">
+          <input type="text" placeholder="Date of Birth*" class="date-input" id="dob">
+          <img src="./Calendar.png" alt="Calendar" class="calendar-icon" id="calendar-icon">
+      </div>
         <div class="em-error" id="em-error">
           <p class="danger-mess" id="error-message">
             <svg
@@ -199,6 +207,35 @@ $(document).ready(function() {
     return email.includes('@') && email.includes('.');
   }
 });
+</script>
+<script>
+  $(document).ready(function() {
+      $("#dob").datepicker({
+          dateFormat: "dd/mm/yy",
+          changeMonth: true,
+          changeYear: true,
+          yearRange: "-100:+0", // Adjust the range as needed
+          onClose: function() {
+              // Ensure the date is valid and display an error if necessary
+              const dobInput = $(this).val();
+              const dateParts = dobInput.split('/');
+              const enteredDate = new Date(`${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`);
+              const today = new Date();
+              let age = today.getFullYear() - enteredDate.getFullYear();
+              const monthDiff = today.getMonth() - enteredDate.getMonth();
+              if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < enteredDate.getDate())) {
+                  age--;
+              }
+              if (age < 21) {
+                  $("#em-error").show();
+                  $(this).css("border", "3px solid red");
+              } else {
+                  $("#em-error").hide();
+                  $(this).css("border", "");
+              }
+          }
+      });
+  });
 </script>
   </body>
 </html>

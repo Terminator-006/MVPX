@@ -165,6 +165,26 @@ select::-ms-expand {
 /* .iti input {
   width: 100%;
 } */
+.date-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width:540px;
+}
+
+.date-input {
+  width: 100%;
+  padding-right: 30px; /* Adjust padding to make room for the icon */
+}
+
+.calendar-icon {
+  position: absolute;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
 
 
 /* info.css */
@@ -256,6 +276,9 @@ button:enabled {
 
 .message p{
   font-size:15.5px;
+}
+.date-input-container{
+  width:94.6vw
 }
 
 
