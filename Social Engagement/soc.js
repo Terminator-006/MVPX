@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
     instagramIdInput.addEventListener('input', function () {
         error.style.display = 'none';
         instagramIdInput.style.border = ''; // Reset the border if it's filled
+        instagramIdInput.classList.remove('shake'); // Remove shake class on input
     });
 
     let popupDisplayed = false;
@@ -83,6 +84,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!instagramIdInput.value) {
             instagramIdInput.style.border = '2px solid red';
             error.style.display = 'flex';
+            instagramIdInput.classList.add('shake'); // Add shake class to input
+            // Remove shake class after animation completes
+            setTimeout(() => {
+                instagramIdInput.classList.remove('shake');
+            }, 500);
             return; // Prevent form submission if Instagram ID is empty
         } else {
             instagramIdInput.style.border = ''; // Reset the border if it's filled
