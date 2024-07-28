@@ -3,35 +3,36 @@ document.addEventListener("DOMContentLoaded", function () {
   const select = document.getElementById('gender');
   const nextButton = document.getElementById('nextButton');
   const dobInput = document.getElementById('dob');
-  const emError = document.getElementById('em-error');
+  const dobError = document.getElementById('dob-error');
   const phoneInput = document.querySelector("#phone");
   const errorMsg = document.querySelector("#em-error2");
   const errorText = document.querySelector("#error-message1");
 
   function updateButtonState() {
       let allFilled = true;
+      let validForm = true;
+
       inputs.forEach(inp => {
-          if (!inp.value) {
+          if (!inp.value.trim()) {
               allFilled = false;
           }
       });
 
-      if (!select.value) {
+      if (select && !select.value.trim()) {
           allFilled = false;
       }
 
-      if (!allFilled) {
-          nextButton.disabled = true;
-          nextButton.style.opacity = '0.5';
-          nextButton.style.cursor = 'not-allowed';
-      } else {
-          nextButton.disabled = false;
-          nextButton.style.opacity = '1';
-          nextButton.style.cursor = 'pointer';
+      if (!isValidAge(dobInput.value) || !isValidPhoneNumber(phoneInput.value)) {
+          validForm = false;
       }
+
+      nextButton.disabled = !(allFilled && validForm);
+      nextButton.style.opacity = allFilled && validForm ? '1' : '0.5';
+      nextButton.style.cursor = allFilled && validForm ? 'pointer' : 'not-allowed';
   }
 
   function isValidAge(dob) {
+      if (!dob) return false;
       const [day, month, year] = dob.split('/');
       const birthDate = new Date(`${year}-${month}-${day}`);
       const today = new Date();
@@ -43,14 +44,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (age < 21) {
-          emError.style.display = 'flex';
+          dobError.style.display = 'flex';
           dobInput.style.border = '3px solid red';
           return false;
       } else {
-          emError.style.display = 'none';
+          dobError.style.display = 'none';
           dobInput.style.border = ''; // Reset to default style
           return true;
       }
+  }
+
+  function isValidPhoneNumber(phone) {
+      return iti.isValidNumber();
   }
 
   var iti = window.intlTelInput(phoneInput, {
@@ -71,13 +76,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   phoneInput.addEventListener('blur', function () {
       reset();
-      if (phoneInput.value.trim()) {
-          if (!iti.isValidNumber()) {
-              phoneInput.classList.add("error");
-              errorMsg.style.display = "block";
-              phoneInput.style.border = '3px solid red';
-          }
+      if (phoneInput.value.trim() && !isValidPhoneNumber(phoneInput.value)) {
+          phoneInput.classList.add("error");
+          errorMsg.style.display = "block";
+          phoneInput.style.border = '3px solid red';
       }
+      updateButtonState();
   });
 
   phoneInput.addEventListener('change', reset);
@@ -86,13 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
   nextButton.addEventListener('click', async function () {
       const dob = dobInput.value;
 
-      if (!isValidAge(dob)) {
-          return;
-      }
-
-      if (phoneInput.value.trim() && !iti.isValidNumber()) {
-          phoneInput.classList.add("error");
-          errorMsg.style.display = "block";
+      if (!isValidAge(dob) || (phoneInput.value.trim() && !isValidPhoneNumber(phoneInput.value))) {
           return;
       }
 
@@ -148,10 +146,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 
-  select.addEventListener('change', updateButtonState);
+  if (select) {
+      select.addEventListener('change', updateButtonState);
+  }
 
   dobInput.addEventListener('focus', function () {
-      emError.style.display = 'none';
+      dobError.style.display = 'none';
       dobInput.style.border = ''; // Reset border style when focusing on input again
   });
 
@@ -163,47 +163,26 @@ document.addEventListener("DOMContentLoaded", function () {
       yearRange: "-100:+0", // Set range of years
       onSelect: function(dateText) {
           $(this).val(dateText);
+          validateDate(); // Call validateDate on date selection
           updateButtonState();
       }
   });
 
-  updateButtonState();
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const inputs = document.querySelectorAll('input');
-  const nextButton = document.getElementById('nextButton');
-  const select = document.getElementById('gender');
-
-  function updateButtonState() {
-      let allFilled = true;
-      inputs.forEach(inp => {
-          if (!inp.value.trim()) {
-              allFilled = false;
-          }
-      });
-
-      if (select && !select.value.trim()) {
-          allFilled = false;
-      }
-
-      nextButton.disabled = !allFilled;
-      nextButton.style.opacity = allFilled ? '1' : '0.5';
-      nextButton.style.cursor = allFilled ? 'pointer' : 'not-allowed';
-  }
-
-  inputs.forEach(input => {
-      input.addEventListener('input', updateButtonState);
+  // Open datepicker when the calendar icon is clicked
+  $('#calendar-icon').on('click', function() {
+      $('#dob').datepicker('show');
   });
 
-  if (select) {
-      select.addEventListener('change', updateButtonState);
+  dobInput.addEventListener('blur', function () {
+      validateDate();
+  });
+
+  function validateDate() {
+      const dob = dobInput.value;
+      if (dob) {
+          isValidAge(dob);
+      }
   }
 
-  // Initial check to set the button state
   updateButtonState();
 });
-
-
-  // Open datepicker when the calendar icon is clicked
-  

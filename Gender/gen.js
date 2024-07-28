@@ -1,14 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const genderInputs = document.querySelectorAll('input[name="gender"]');
     const sexualitySelect = document.getElementById('sex');
-    const partnerReferralInput = document.querySelector('input[type="text"]');
+    const personInput = document.getElementById('person');
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const nextBtn = document.getElementById('nextButton');
 
     function checkFormValidity() {
         const isGenderSelected = Array.from(genderInputs).some(input => input.checked);
         const isSexualitySelected = sexualitySelect.value !== '';
-        nextBtn.disabled = !(isGenderSelected && isSexualitySelected);
+        const isPersonSelected = personInput.value.trim() !== '';
+
+        nextBtn.disabled = !(isGenderSelected && isSexualitySelected && isPersonSelected);
+
+        if (nextBtn.disabled) {
+            nextBtn.style.opacity = '0.5';
+            nextBtn.style.cursor = 'not-allowed';
+        } else {
+            nextBtn.style.opacity = '1';
+            nextBtn.style.cursor = 'pointer';
+        }
     }
 
     genderInputs.forEach(input => {
@@ -22,6 +32,17 @@ document.addEventListener('DOMContentLoaded', function () {
             sexualitySelect.classList.add('selected');
         } else {
             sexualitySelect.classList.remove('selected');
+        }
+    });
+
+    personInput.addEventListener('input', function () {
+        checkFormValidity();
+        if (personInput.value.trim() !== '') {
+            personInput.style.color = 'black';
+            personInput.style.fontWeight = 'bold';
+        } else {
+            personInput.style.color = 'grey';
+            personInput.style.fontWeight = 'normal';
         }
     });
 
@@ -66,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (input.tagName.toLowerCase() === 'input') {
             input.addEventListener('input', function () {
                 if (input.value) {
-                    input.style.fontWeight = 'bold';
+                    input.style.fontWeight = '600';
                     input.style.color = 'black';
                 } else {
                     input.style.fontWeight = 'normal';
@@ -78,5 +99,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initial styles for select and input elements
     sexualitySelect.style.color = 'black';
-    partnerReferralInput.style.color = 'black';
+    personInput.style.color = 'black';
+
+    nextBtn.addEventListener('click', function () {
+        if (!nextBtn.disabled) {
+            window.location.href = '../submit email/index.html';
+        }
+    });
 });

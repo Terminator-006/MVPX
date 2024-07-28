@@ -164,7 +164,7 @@ button:enabled {
 .design a{
   text-decoration: none;
 }
-@media (max-width: 650px) {
+@media (max-width: 572px) {
   .container, .button-container button, input[type="email"] {
       width: 100%;
   }
@@ -185,16 +185,25 @@ button:enabled {
       font-size: 24px;
       line-height: 28px;
   }
-  .message p {
-      font-size: 16px;
-      line-height: 24px;
-  }
+  
+  
+  
   input[type="email"] {
       font-size: 14px;
   }
   .button-container {
       width: 100vw;
   }
+
+
+}
+
+@media (max-width:375px){
+  .message p {
+    width:100%;
+    font-size:4.15vw;
+  }
+
 }
 
 /* Additional CSS for filled input */
