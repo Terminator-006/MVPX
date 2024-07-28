@@ -105,26 +105,14 @@
           <input type="text" placeholder="Date of Birth*" class="date-input" id="dob">
           <img src="./Calendar.png" alt="Calendar" class="calendar-icon" id="calendar-icon">
       </div>
-        <div class="em-error" id="em-error">
-          <p class="danger-mess" id="error-message">
-            <svg
-              class="danger-triangle"
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="12"
-              viewBox="0 0 14 12"
-              fill="none"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M8.51041 11.7023H7.51041L7.50441 10.7023H8.51041V11.7023ZM7.50908 9.84431H8.50908V6.97698H7.50908V9.84431ZM8.24241 2.13965H7.75641L1.43774 13.2256L1.87508 13.8603H14.0871L14.5624 13.235L8.24241 2.13965Z"
-                fill="#DC0000"
-              />
-            </svg>
-            Age isn't compatible. You must be at least 21 years old
+      <div class="em-error" id="dob-error">
+          <p class="danger-mess" id="dob-error-message">
+              <svg class="danger-triangle" xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.51041 11.7023H7.51041L7.50441 10.7023H8.51041V11.7023ZM7.50908 9.84431H8.50908V6.97698H7.50908V9.84431ZM8.24241 2.13965H7.75641L1.43774 13.2256L1.87508 13.8603H14.0871L14.5624 13.235L8.24241 2.13965Z" fill="#DC0000"/>
+              </svg>
+              Age isn't compatible. You must be at least 21 years old.
           </p>
-        </div>
+      </div>
         <input type="text" placeholder="Current City of Residence*" id="city" />
       </div>
     </div>
@@ -210,32 +198,74 @@ $(document).ready(function() {
 </script>
 <script>
   $(document).ready(function() {
-      $("#dob").datepicker({
-          dateFormat: "dd/mm/yy",
-          changeMonth: true,
-          changeYear: true,
-          yearRange: "-100:+0", // Adjust the range as needed
-          onClose: function() {
-              // Ensure the date is valid and display an error if necessary
-              const dobInput = $(this).val();
-              const dateParts = dobInput.split('/');
-              const enteredDate = new Date(`${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`);
-              const today = new Date();
-              let age = today.getFullYear() - enteredDate.getFullYear();
-              const monthDiff = today.getMonth() - enteredDate.getMonth();
-              if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < enteredDate.getDate())) {
-                  age--;
-              }
-              if (age < 21) {
-                  $("#em-error").show();
-                  $(this).css("border", "3px solid red");
-              } else {
-                  $("#em-error").hide();
-                  $(this).css("border", "");
-              }
-          }
-      });
-  });
+    const dobInput = $("#dob");
+    const dobError = $("#dob-error");
+
+    // Initialize datepicker
+    dobInput.datepicker({
+        dateFormat: "dd/mm/yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0", // Adjust as needed
+        onSelect: function(dateText, inst) {
+            validateDate();
+            updateButtonState();
+        },
+        onClose: function() {
+            validateDate();
+        }
+    });
+
+    // Open datepicker when the calendar icon is clicked
+    $("#calendar-icon").on("click", function() {
+        dobInput.datepicker("show");
+    });
+
+    function validateDate() {
+        const dobValue = dobInput.val();
+        const dateParts = dobValue.split('/');
+        const enteredDate = new Date(`${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`);
+        const today = new Date();
+        let age = today.getFullYear() - enteredDate.getFullYear();
+        const monthDiff = today.getMonth() - enteredDate.getMonth();
+
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < enteredDate.getDate())) {
+            age--;
+        }
+
+        if (age < 21) {
+            dobError.show();
+            dobInput.css("border", "3px solid red");
+        } else {
+            dobError.hide();
+            dobInput.css("border", "");
+        }
+    }
+
+    function updateButtonState() {
+        const inputs = document.querySelectorAll('input');
+        const nextButton = document.getElementById('nextButton');
+        let allFilled = true;
+
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                allFilled = false;
+            }
+        });
+
+        nextButton.disabled = !allFilled;
+        nextButton.style.opacity = allFilled ? '1' : '0.5';
+        nextButton.style.cursor = allFilled ? 'pointer' : 'not-allowed';
+    }
+
+    dobInput.on('input', function() {
+        validateDate();
+        updateButtonState();
+    });
+
+    updateButtonState();
+});
+
 </script>
   </body>
 </html>

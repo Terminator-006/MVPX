@@ -204,20 +204,72 @@ document.addEventListener("DOMContentLoaded", function () {
   updateButtonState();
 });
 
-$(document).ready(function () {
+$(document).ready(function() {
+  const dobInput = $("#dob");
+  const dobError = $("#dob-error");
+
   // Initialize datepicker
-  $("#dob").datepicker({
+  dobInput.datepicker({
       dateFormat: "dd/mm/yy",
       changeMonth: true,
       changeYear: true,
       yearRange: "-100:+0", // Adjust as needed
       onSelect: function(dateText, inst) {
-          $(this).trigger('input'); // Trigger input event to validate and update button state
+          validateDate();
+          updateButtonState();
+      },
+      onClose: function() {
+          validateDate();
       }
   });
 
-  // Open datepicker when the calendar icon is clicked
-  $("#calendar-icon").on("click", function() {
-      $("#dob").datepicker("show");
-  });
-});
+//   // Open datepicker when the calendar icon is clicked
+//   $("#calendar-icon").on("click", function() {
+//       dobInput.datepicker("show");
+//   });
+
+//   function validateDate() {
+//       const dobValue = dobInput.val();
+//       const dateParts = dobValue.split('/');
+//       const enteredDate = new Date(`${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`);
+//       const today = new Date();
+//       let age = today.getFullYear() - enteredDate.getFullYear();
+//       const monthDiff = today.getMonth() - enteredDate.getMonth();
+
+//       if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < enteredDate.getDate())) {
+//           age--;
+//       }
+
+//       if (age < 21) {
+//           dobError.show();
+//           dobInput.css("border", "3px solid red");
+//       } else {
+//           dobError.hide();
+//           dobInput.css("border", "");
+//       }
+//   }
+
+//   function updateButtonState() {
+//       const inputs = document.querySelectorAll('input');
+//       const nextButton = document.getElementById('nextButton');
+//       let allFilled = true;
+
+//       inputs.forEach(input => {
+//           if (!input.value.trim()) {
+//               allFilled = false;
+//           }
+//       });
+
+//       nextButton.disabled = !allFilled;
+//       nextButton.style.opacity = allFilled ? '1' : '0.5';
+//       nextButton.style.cursor = allFilled ? 'pointer' : 'not-allowed';
+//   }
+
+//   dobInput.on('input', function() {
+//       validateDate();
+//       updateButtonState();
+//   });
+
+//   updateButtonState();
+// });
+
