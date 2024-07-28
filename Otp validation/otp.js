@@ -123,8 +123,11 @@ function showSuccessMessage() {
     const errorDiv = document.getElementById('error');
     const successMessage = document.getElementById('error-message');
     const inp = document.getElementById('harshit');
+    const err = document.getElementById('err');
     errorDiv.style.display = 'flex'; // Make sure the error div is visible
+    err.style.display = 'none';
     inp.style.border = '3px solid green';
-    successMessage.innerText = 'OTP verified successfully';
+    successMessage.innerHTML = '<img src="./Heart2.png" alt="Heart Icon" width="14" height="14"/> Email is Successfully verified';
     successMessage.style.color = 'green';
 }
+
