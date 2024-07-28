@@ -127,5 +127,6 @@ function showSuccessMessage(){
     errorDiv.style.display = 'flex'; // Make sure the error div is visible
     inp.style.border ='3px solid green';
     success.innerText ='OTP verified succesfully';
+    success.innerText.style.color ='green';
 
 }
