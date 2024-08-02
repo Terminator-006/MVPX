@@ -126,7 +126,44 @@ html {
   transform: translateY(-50%);
   pointer-events: none; /* Ignore pointer events */
 }
+.em-error {
+  display: none;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  color: #DC0000;
+  margin-top:-24px;
+}
 
+.danger-mess {
+  display: flex;
+  
+}
+
+.danger-mess svg {
+  margin-right: 5px; /* Adjust as needed */
+  width: 12px;      /* Adjust the size as needed */
+  height: 12px;   
+  margin-top: 2px;
+  fill: #DC0000;    /* Set the fill color as needed */
+}
+
+
+@keyframes shake {
+  0%, 100% {
+      transform: translateX(0);
+  }
+  25% {
+      transform: translateX(-5px);
+  }
+  75% {
+      transform: translateX(5px);
+  }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
 .content input:focus,
 .content select:focus {
   border: 3px solid black; /* Border on focus */
@@ -160,7 +197,7 @@ html {
   height: 48px;
   border-radius: 100px;
   padding: 11px 10px 13px 10px;
-  background-color: grey;
+  background-color: black;
   color: white;
   border: none;
   font-size: 16px;
@@ -172,9 +209,7 @@ html {
   transition: opacity 0.2s, cursor 0.2s;
 }
 
-.button-container button:hover{
-  background-color: black;
-}
+
 
 button:enabled {
   opacity: 1;
@@ -234,7 +269,7 @@ button:enabled {
 .close-popup-button {
   height: 48px;
   width: 290px;
-  background-color: grey;
+  background-color: black;
   color: #ffffff;
   border: none;
   padding: 11px 10px 13px 10px;
@@ -244,9 +279,7 @@ button:enabled {
   transition: background-color 0.3s ease;
 }
 
-.close-popup-button:hover {
-  background-color: black;
-}
+
 
 .background-overlay {
   display: none;
@@ -296,6 +329,9 @@ button:enabled {
   .close-popup-button{
     max-width: 290px;
     width:85vw;
+  }
+  .em-error{
+    width:94.6vw;
   }
 }
 

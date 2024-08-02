@@ -1,13 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
     const nextButton = document.getElementById('next-button');
     const fileInputs = document.querySelectorAll('input[type="file"]');
-    let filesUploaded = 0;
+    let filesUploaded = { couplePhoto1: false, malePicture: false };
 
-    fileInputs.forEach(input => {
+    fileInputs.forEach((input, index) => {
         input.addEventListener('change', function () {
-            // Check if files are selected or deselected
-            filesUploaded = Array.from(fileInputs).filter(input => input.files.length > 0).length;
-            if (filesUploaded === 4) {
+            // Update the filesUploaded object
+            if (index === 0) { // Assuming index 0 is for Couple Photo 1
+                filesUploaded.couplePhoto1 = input.files.length > 0;
+            } else if (index === 2) { // Assuming index 2 is for Male Picture
+                filesUploaded.malePicture = input.files.length > 0;
+            }
+
+            // Check if both required files are uploaded
+            if (filesUploaded.couplePhoto1 && filesUploaded.malePicture) {
                 nextButton.disabled = false;
                 nextButton.style.opacity = '1';
                 nextButton.style.cursor = 'pointer';
@@ -88,6 +94,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (input.files.length > 0) {
                 const base64 = await convertToBase64(input.files[0]);
                 fileInputValues.push(base64);
+            } else {
+                fileInputValues.push(''); // Push empty string if no file
             }
         }
         return fileInputValues;
@@ -106,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         alert("success!");
         window.location.href = '../Matching/index.html';
-               
     });
 });
 

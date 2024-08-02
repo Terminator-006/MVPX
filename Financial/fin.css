@@ -92,18 +92,55 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: aut;
+
 }
 
-.first-inp {
-    width: 100%;
-    height: 56px;
-    border: 1px solid black;
-    border-radius: 6px;
-    padding: 16px;
-    box-sizing: border-box;
-    margin-top:8px;
+
+/* Container for the custom select and arrow */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 540px; /* Adjust based on your design */
+  margin-top: 8px;
 }
+
+/* Custom select dropdown styling */
+.first-inp {
+  width: 100%;
+  height: 56px;
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 16px;
+  padding-right: 40px; /* To make space for the custom arrow */
+  box-sizing: border-box;
+  font-family: 'Victor Serif';
+  appearance: none;
+  background-color: white;
+  background-image: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+}
+
+.first-inp:focus {
+  outline: none;
+  border: 1px solid black;
+}
+
+.first-inp option {
+  color: black;
+}
+
+/* Positioning the custom arrow */
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+
 
 .luxury-items {
     display: flex;

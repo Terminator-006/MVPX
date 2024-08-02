@@ -29,11 +29,32 @@
             </div>
             <div class="message">
                 <h3>Financial Details</h3>
-                <p>Description Text</p>
+                <!--<p>Description Text</p>-->
             </div>
         </div>
-        <div class="content">
-            <input type="number" placeholder="Annual Income*" class="first-inp" id="Income">
+        
+             
+        <div class="custom-select-wrapper">
+            <select class="first-inp" id="how-heard" required>
+                <option value="" disabled selected hidden>Annual Income*</option>
+                <option value="500K-1M dollars">500K-1M dollars</option>
+                <option value="1-5M dollars">1-5M dollars</option>
+                <option value="5-50M dollars">5-50M dollars</option>
+                <option value="50M+ dollars">50M+ dollars</option>
+                
+                
+
+            </select>
+            <div class="custom-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 12C2.75 17.108 6.891 21.25 12 21.25C17.108 21.25 21.25 17.108 21.25 12C21.25 6.892 17.108 2.75 12 2.75C6.891 2.75 2.75 6.892 2.75 12Z" stroke="black" stroke-width="1.5" stroke-linecap="square"/>
+                    <path d="M8.52881 10.5576L11.9998 14.0436L15.4708 10.5576" stroke="black" stroke-width="1.5" stroke-linecap="square"/>
+                </svg>
+            </div>
+        </div>
+            
+            
+              
             <div class="luxury-items">
                 <p>Luxury assets*</p>
                 <div class="checklist">

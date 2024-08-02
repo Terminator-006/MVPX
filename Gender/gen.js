@@ -4,13 +4,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const personInput = document.getElementById('person');
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const nextBtn = document.getElementById('nextButton');
+    const referralCodeInput = document.querySelector('.code'); // Assuming this is the input for the referral code
 
     function checkFormValidity() {
         const isGenderSelected = Array.from(genderInputs).some(input => input.checked);
         const isSexualitySelected = sexualitySelect.value !== '';
         const isPersonSelected = personInput.value.trim() !== '';
+        const isReferralCodeRequired = personInput.value === 'Partner 2';
+        const isReferralCodeFilled = referralCodeInput.value.trim() !== '';
 
-        nextBtn.disabled = !(isGenderSelected && isSexualitySelected && isPersonSelected);
+        const isFormValid = isGenderSelected && isSexualitySelected && isPersonSelected && 
+                            (!isReferralCodeRequired || (isReferralCodeRequired && isReferralCodeFilled));
+
+        nextBtn.disabled = !isFormValid;
 
         if (nextBtn.disabled) {
             nextBtn.style.opacity = '0.5';
@@ -19,6 +25,15 @@ document.addEventListener('DOMContentLoaded', function () {
             nextBtn.style.opacity = '1';
             nextBtn.style.cursor = 'pointer';
         }
+    }
+
+    function toggleReferralCode() {
+        if (personInput.value === 'Partner 2') {
+            referralCodeInput.style.display = 'flex';
+        } else {
+            referralCodeInput.style.display = 'none';
+        }
+        checkFormValidity(); // Re-check form validity whenever referral code input is toggled
     }
 
     genderInputs.forEach(input => {
@@ -30,21 +45,18 @@ document.addEventListener('DOMContentLoaded', function () {
         // Update styles when a value is selected
         if (sexualitySelect.value !== '') {
             sexualitySelect.classList.add('selected');
+            sexualitySelect.style.fontWeight = '400'
         } else {
             sexualitySelect.classList.remove('selected');
         }
     });
 
-    personInput.addEventListener('input', function () {
+    personInput.addEventListener('change', function () {
         checkFormValidity();
-        if (personInput.value.trim() !== '') {
-            personInput.style.color = 'black';
-            personInput.style.fontWeight = 'bold';
-        } else {
-            personInput.style.color = 'grey';
-            personInput.style.fontWeight = 'normal';
-        }
+        toggleReferralCode();
     });
+
+    referralCodeInput.addEventListener('input', checkFormValidity);
 
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function () {
@@ -87,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (input.tagName.toLowerCase() === 'input') {
             input.addEventListener('input', function () {
                 if (input.value) {
-                    input.style.fontWeight = '600';
+                    input.style.fontWeight = '400';
                     input.style.color = 'black';
                 } else {
                     input.style.fontWeight = 'normal';
@@ -106,4 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = '../submit email/index.html';
         }
     });
+
+    // Initially hide the referral code input
+    // referralCodeInput.style.display = 'none';
 });

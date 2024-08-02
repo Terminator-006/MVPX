@@ -30,13 +30,13 @@
             </div>
             <div class="message">
                 <h3>Reference Details</h3>
-                <p>Description Text</p>
+               <!-- <p>Description Text</p>-->
             </div>
         </div>
         <div class="content">
             <div class="custom-select">
                 <select id="how-heard" required>
-                    <option value="" disabled selected hidden>How did you hear about Regnum?</option>
+                    <option value="" disabled selected hidden>How did you hear about Regnum?*</option>
                     <option value="social-media">Social media</option>
                     <option value="friend">From a friend</option>
                 </select>
@@ -47,6 +47,26 @@
                     </svg>
                 </div>
             </div>
+            <div class="em-error" id="em-error2">
+                <p class="danger-mess" id="error-message1">
+                  <svg
+                    class="danger-triangle"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="12"
+                    viewBox="0 0 14 12"
+                    fill="none"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8.51041 11.7023H7.51041L7.50441 10.7023H8.51041V11.7023ZM7.50908 9.84431H8.50908V6.97698H7.50908V9.84431ZM8.24241 2.13965H7.75641L1.43774 13.2256L1.87508 13.8603H14.0871L14.5624 13.235L8.24241 2.13965Z"
+                      fill="#DC0000"
+                    />
+                  </svg>
+                  Invalid phone number
+                </p>
+              </div>
             <input type="text" id="references" placeholder="References or Endorsements" required />
             <input type="text" id="reference-name" placeholder="Name of Reference" required />
             <input type="number" id="reference-phone" placeholder="Phone Number of Reference" required />
@@ -61,7 +81,7 @@
              
                 <div class="popup-content">
                     <span>Disclaimer!!!</span>
-                    <p>If you'll not provide<br> complete details there are<br>99% chances of your<br> profile rejection</p>
+                    <p>Historically, 96% of<br>applicants who didn't<br> fill complete details<br>get rejected.</p>
                 </div>
                 <div class="close-button">
                     <button id="closePopup" class="close-popup-button">Got it</button>

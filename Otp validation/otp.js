@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 } else {
                     const errorData = await response.json();
-                    showErrorMessage(errorData.error || 'Error verifying OTP. Please try again.');
+                    showErrorMessage();
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             otp += val;
-            target.value = '*';
+            // target.value = '*';
 
             if (val !== "") {
                 const next = target.nextElementSibling;
@@ -114,7 +114,7 @@ function showErrorMessage(message) {
     errorDiv.style.display = 'flex'; // Make sure the error div is visible
     inp.style.border = '3px solid red';
     const errorMessage = document.getElementById('error-message');
-    errorMessage.innerText = message || 'Error occurred';
+    errorMessage.style.display='flex';
     errorMessage.style.color = 'red';
 }
 

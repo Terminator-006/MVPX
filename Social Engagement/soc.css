@@ -209,7 +209,7 @@ select::-ms-expand {
   height: 48px;
   border-radius: 100px;
   padding: 11px 10px 13px 10px;
-  background-color: grey;
+  background-color: black;
   color: white;
   border: none;
   font-size: 16px;
@@ -221,9 +221,9 @@ select::-ms-expand {
   transition: opacity 0.2s, cursor 0.2s;
 }
 
-button:hover{
+/* button:hover{
   background-color: black;
-}
+} */
 
 button:enabled {
   opacity: 1;
@@ -287,7 +287,7 @@ button:enabled {
 .close-popup-button {
   height: 48px;
   width: 290px;
-  background-color: grey;
+  background-color: black;
   color: #ffffff;
   border: none;
   padding: 11px 10px 13px 10px;
@@ -297,9 +297,7 @@ button:enabled {
   transition: background-color 0.3s ease;
 }
 
-.close-popup-button:hover {
-  background-color: black;
-}
+
 
 .background-overlay {
   display: none;
@@ -341,6 +339,9 @@ button:enabled {
   .close-popup-button{
     max-width: 290px;
     width:85vw;
+  }
+  .em-error{
+    width:94.6vw;
   }
 }
 

@@ -7,6 +7,7 @@ const nextButton = document.getElementById('next-button');
 const popup = document.getElementById('overlay');
 const closePopupButton = document.getElementById('closePopup');
 const backpopup = document.getElementById('bgol');
+const errorDiv = document.getElementById('em-error2');
 
 let popupDisplayed = false; // Track whether the popup has been displayed
 
@@ -18,32 +19,43 @@ function checkAllFieldsValid() {
            referencePhoneInput.value !== '';
 }
 
-// Function to enable or disable the Next button based on validation
-function toggleNextButton() {
-    // The button is always enabled, so this function is currently not needed
+// Event listeners for input and select fields
+howHeardSelect.addEventListener('input', () => {
+    if (howHeardSelect.value !== '') {
+        errorDiv.style.display = 'none';
+        howHeardSelect.style.border = '';
+    }
+});
+
+function addShakeEffect() {
+    howHeardSelect.classList.add('shake');
 }
 
-// Event listeners for input and select fields
-howHeardSelect.addEventListener('input', toggleNextButton);
-referencesInput.addEventListener('input', toggleNextButton);
-referenceNameInput.addEventListener('input', toggleNextButton);
-referencePhoneInput.addEventListener('input', toggleNextButton);
 
-// Initial check when the page loads
 document.addEventListener('DOMContentLoaded', function () {
-    // Ensure the button is enabled on load
-    toggleNextButton(); 
-
     nextButton.addEventListener('click', async function (event) {
+        // Check if "How did you hear about Regnum?" field is filled
+        if (howHeardSelect.value === '') {
+            event.preventDefault();
+            addShakeEffect();
+
+            // Display error message and highlight the "How did you hear about Regnum?" field
+            errorDiv.style.display = 'flex';
+            howHeardSelect.style.border = '3px solid red';
+            return; // Prevent form submission if "How did you hear about Regnum?" field is not filled
+        }
+
+        // If the "How did you hear about Regnum?" field is filled but other fields are not valid
         if (!checkAllFieldsValid()) {
             event.preventDefault();
+
             if (!popupDisplayed) {
                 // Display the popup
                 popup.style.display = 'flex';
                 backpopup.style.display = 'block'; // Show the background overlay
                 popupDisplayed = true; // Mark that the popup has been displayed
+                return; // Prevent form submission if fields are not valid
             }
-            return; // Prevent form submission if fields are not valid
         }
 
         const data = {
