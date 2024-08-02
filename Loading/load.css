@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Victor Serif';
+    src: url('../Victor Serif/VictorSerifTrial-40Regular.otf');
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Victor Serif';
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loader {
+    margin-bottom: 32px;
+    height: 40px;
+    width: 40px;
+    border: 4px solid transparent;
+    border-top: 4px solid #000; /* Black */
+    border-right: 4px solid #000; /* Black */
+    border-left: 4px solid black;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.content span {
+    font-weight: 400;
+    margin-bottom: 4px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.content p {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+}
