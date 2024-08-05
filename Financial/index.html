@@ -38,10 +38,10 @@
         <div class="custom-select-wrapper">
             <select class="first-inp" id="how-heard" required>
                 <option value="" disabled selected hidden>Annual Income*</option>
-                <option value="500K-1M dollars">500 K-1 M USD</option>
-                <option value="1-5M dollars">1-5 M USD</option>
-                <option value="5-50M dollars">5-50 M USD</option>
-                <option value="50M+ dollars">50 M+ USD</option>
+                <option value="500 K-1 M USD">500 K-1 M USD</option>
+                <option value="1-5 M USD">1-5 M USD</option>
+                <option value="5-50 M USD">5-50 M USD</option>
+                <option value="50 M+ USD">50 M+ USD</option>
                 
                 
 
@@ -53,14 +53,22 @@
                 </svg>
             </div>
         </div>
-            
+
+        <!-- const luxuryAssetsValues = {
+            "Real Estate": 5,
+            "Luxury Cars": 3,
+            "Yachts or Private Boats": 7,
+            "Private Jets or Aircraft" : 8,
+            "Art Collections or Antiques" :3,
+            "Jewelry or Rare Collectibles": 3   
+        }; -->
             
               
             <div class="luxury-items">
                 <p>Luxury assets*</p>
                 <div class="checklist">
                     <label>
-                        <input type="checkbox" name="luxury-item" value="item1">
+                        <input type="checkbox" name="luxury-item" value="Real Estate">
                         <svg class="unchecked" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <g opacity="0.24">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7212 21.25C16.8298 21.25 20.9712 17.1086 20.9712 12C20.9712 6.89137 16.8298 2.75 11.7212 2.75C6.61256 2.75 2.47119 6.89137 2.47119 12C2.47119 17.1086 6.61256 21.25 11.7212 21.25Z" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
@@ -73,7 +81,7 @@
                         Real Estate
                     </label>
                     <label>
-                        <input type="checkbox" name="luxury-item" value="item2">
+                        <input type="checkbox" name="luxury-item" value="Luxury Cars">
                         <svg class="unchecked" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <g opacity="0.24">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7212 21.25C16.8298 21.25 20.9712 17.1086 20.9712 12C20.9712 6.89137 16.8298 2.75 11.7212 2.75C6.61256 2.75 2.47119 6.89137 2.47119 12C2.47119 17.1086 6.61256 21.25 11.7212 21.25Z" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
@@ -83,10 +91,10 @@
                             <path d="M8.37075 11.2583C10.4598 12.579 12.0207 14.939 12.0207 14.939H12.052C12.052 14.939 15.368 9.0712 21.5286 5.4624" stroke="black" stroke-width="1.5" stroke-linecap="square"/>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7212 21.25C16.8298 21.25 20.9712 17.1086 20.9712 12C20.9712 6.89137 16.8298 2.75 11.7212 2.75C6.61256 2.75 2.47119 6.89137 2.47119 12C2.47119 17.1086 6.61256 21.25 11.7212 21.25Z" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
-                        ⁠Luxury Cars
+                        Luxury Cars
                     </label>
                     <label>
-                        <input type="checkbox" name="luxury-item" value="item3">
+                        <input type="checkbox" name="luxury-item" value="⁠Yachts or Private Boats">
                         <svg class="unchecked" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <g opacity="0.24">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7212 21.25C16.8298 21.25 20.9712 17.1086 20.9712 12C20.9712 6.89137 16.8298 2.75 11.7212 2.75C6.61256 2.75 2.47119 6.89137 2.47119 12C2.47119 17.1086 6.61256 21.25 11.7212 21.25Z" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
@@ -100,7 +108,7 @@
 
                     </label>
                     <label>
-                        <input type="checkbox" name="luxury-item" value="item4">
+                        <input type="checkbox" name="luxury-item" value="⁠Private Jets or Aircraft">
                         <svg class="unchecked" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <g opacity="0.24">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7212 21.25C16.8298 21.25 20.9712 17.1086 20.9712 12C20.9712 6.89137 16.8298 2.75 11.7212 2.75C6.61256 2.75 2.47119 6.89137 2.47119 12C2.47119 17.1086 6.61256 21.25 11.7212 21.25Z" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
@@ -114,7 +122,7 @@
 
                     </label>
                     <label>
-                        <input type="checkbox" name="luxury-item" value="item5">
+                        <input type="checkbox" name="luxury-item" value="⁠Jewelry or Rare Collectibles">
                         <svg class="unchecked" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <g opacity="0.24">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7212 21.25C16.8298 21.25 20.9712 17.1086 20.9712 12C20.9712 6.89137 16.8298 2.75 11.7212 2.75C6.61256 2.75 2.47119 6.89137 2.47119 12C2.47119 17.1086 6.61256 21.25 11.7212 21.25Z" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
@@ -128,7 +136,7 @@
 
                     </label>
                     <label>
-                        <input type="checkbox" name="luxury-item" value="item6">
+                        <input type="checkbox" name="luxury-item" value="⁠Art Collections or Antiques">
                         <svg class="unchecked" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <g opacity="0.24">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7212 21.25C16.8298 21.25 20.9712 17.1086 20.9712 12C20.9712 6.89137 16.8298 2.75 11.7212 2.75C6.61256 2.75 2.47119 6.89137 2.47119 12C2.47119 17.1086 6.61256 21.25 11.7212 21.25Z" stroke="black" stroke-width="1.5" stroke-linecap="round"/>

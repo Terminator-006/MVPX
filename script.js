@@ -1,3 +1,3 @@
 document.getElementById('start').addEventListener('click', function() {
-    window.location.href = './Gender/index.html';
+    window.location.href = './submit email/index.html';
 });

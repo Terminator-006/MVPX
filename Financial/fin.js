@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        const incomeFilled = incomeInput.value.trim() !== '';
-        const howHeardSelected = howHeardSelect.value.trim() !== '';
+        // const incomeFilled = incomeInput.value.trim() !== '';
+        const incomeFilled = howHeardSelect.value.trim() !== '';
         const anyLuxurySelected = Array.from(luxuryItems).some(item => item.checked);
 
-        if (allFilled && incomeFilled && howHeardSelected && anyLuxurySelected) {
+        if (allFilled && incomeFilled && anyLuxurySelected) {
             nextButton.disabled = false;
             nextButton.style.opacity = '1';
             nextButton.style.cursor = 'pointer';
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     nextButton.addEventListener('click', async function () {
-        const income = document.getElementById("Income").value;
+        const income = document.getElementById("how-heard").value;
         const selectedItems = getSelectedCheckboxes();
         let data = {};
         const email = localStorage.getItem("userEmail");
@@ -118,29 +118,41 @@ document.addEventListener('DOMContentLoaded', function () {
         data["AnnualIncome"] = income;
         data["LuxuryAssets"] = selectedItems; 
         console.log(data);
-        
         let score = 0;
-        if (income > 1000000) {
+        if (income == "50 M+ USD") {
             score = 10;
-        } else if (income > 500000) {
+        } else if (income == "5-50 M USD") {
             score = 8;
-        } else if (income > 250000) {
+        } else if (income == "1-5 M USD") {
             score = 5;
         } else {
             score = 2;
         }
+        
+
         const luxuryAssetsValues = {
             "Real Estate": 5,
-            "Cars": 3,
-            "Yachts": 7,
-            "Jewellery": 2
+            "Luxury Cars": 3,
+            "⁠Yachts or Private Boats": 7,
+            "⁠Private Jets or Aircraft": 8,
+            "⁠Art Collections or Antiques": 3,
+            "⁠Jewelry or Rare Collectibles": 3
         };
+        console.log(luxuryAssetsValues);
+
         let assetScore = 0;
         selectedItems.forEach(asset => {
             assetScore += luxuryAssetsValues[asset] || 0;
         });
 
+
+        console.log(assetScore);
+        console.log(score);
+        
+
         try {
+            console.log(data);
+            
             const response = await fetch('https://regnum-backend-bice.vercel.app/update-details', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

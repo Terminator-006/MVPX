@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
         input.addEventListener('change', checkFormValidity);
     });
 
+
+    
+
     sexualitySelect.addEventListener('change', function () {
         checkFormValidity();
         // Update styles when a value is selected
@@ -113,9 +116,47 @@ document.addEventListener('DOMContentLoaded', function () {
     sexualitySelect.style.color = 'black';
     personInput.style.color = 'black';
 
-    nextBtn.addEventListener('click', function () {
+    nextBtn.addEventListener('click', async function () {
         if (!nextBtn.disabled) {
-            window.location.href = '../submit email/index.html';
+            const personSelect = document.getElementById('person');
+            localStorage.setItem('selectedPartner', personSelect.value);
+            if (personSelect.value === 'Partner 2') {
+                const code = referralCodeInput.value;
+                try {
+                    const response = await fetch('https://regnum-backend-bice.vercel.app/check-code', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            code,
+                            email2: localStorage.getItem("userEmail")
+                        })
+                    });
+            
+                    // Check if response is OK
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`Error: ${errorData.error || 'Unknown error occurred'}`);
+                    }
+            
+                    const responseData = await response.json();
+                    if (responseData.ok) {
+                        window.location.href = '../Information/index.html';
+                    } else {
+                        console.error('Invalid code or email mismatch');
+                        // Handle invalid code scenario here (e.g., show an error message to the user)
+                    }
+            
+                } catch (error) {
+                    console.error('Error fetching the code:', error);
+                    // Optionally show an error message to the user
+                }
+            }
+            else{
+                window.location.href = '../Information/index.html';
+            }            
+            
         }
     });
 

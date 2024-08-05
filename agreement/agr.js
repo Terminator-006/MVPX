@@ -108,31 +108,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
     nextButton.addEventListener('click', async function () {
         const email = localStorage.getItem('userEmail');
-        console.log(email);
-        try {
-            const response = await fetch('https://regnum-backend-bice.vercel.app/get-score', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email })
-            });
+        const partner = localStorage.getItem('selectedPartner');
+        console.log(partner);
+        alert("hi")
+        // console.log(email);
+        // try {
+        //     const response = await fetch('https://regnum-backend-bice.vercel.app/get-score', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({ email })
+        //     });
 
-            if (response.ok) {
-                const scoreData = await response.json();
-                if (scoreData.score >= 50) {
-                    alert("Success!");
-                    window.location.href = '../Accepted/index.html';
-                } else {
-                    alert("Success!");
-                    window.location.href = '../Rejected/index.html';
-                }
-            } else {
-                alert("Error");
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert("Error");
+        //     if (response.ok) {
+        //         const scoreData = await response.json();
+        //         if (scoreData.score >= 50) {
+        //             alert("Success!");
+        //             window.location.href = '../Accepted/index.html';
+        //         } else {
+        //             alert("Success!");
+        //             window.location.href = '../Rejected/index.html';
+        //         }
+        //     } else {
+        //         alert("Error");
+        //     }
+        // } catch (error) {
+        //     console.error('Error:', error);
+        //     alert("Error");
+        // }
+
+        if(partner=="Partner 1"){
+            window.location.href = '../AC1/index.html';
+        }
+        else{
+            window.location.href = '../AC2/index.html';
         }
     });
 

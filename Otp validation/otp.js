@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
 
                     if (createUserEntryResponse.ok) {
-                        window.location.href = '../Information/index.html'; // Redirect to next page
+                        window.location.href = '../Gender/index.html'; // Redirect to next page
                     } else {
                         const errorData = await createUserEntryResponse.json();
                         showErrorMessage();
