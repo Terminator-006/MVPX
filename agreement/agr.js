@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const email = localStorage.getItem('userEmail');
         const partner = localStorage.getItem('selectedPartner');
         console.log(partner);
-        alert("hi")
+        // alert("hi")
         // console.log(email);
         // try {
         //     const response = await fetch('https://regnum-backend-bice.vercel.app/get-score', {

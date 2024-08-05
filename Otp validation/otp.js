@@ -1,10 +1,12 @@
 let otp = "";
 document.addEventListener('DOMContentLoaded', function () {
-    const otpInput1 = document.getElementById('otp1');
-    const otpInput2 = document.getElementById('otp2');
-    const otpInput3 = document.getElementById('otp3');
-    const otpInput4 = document.getElementById('otp4');
-    const otpInput5 = document.getElementById('otp5');
+    const otpInputs = [
+        document.getElementById('otp1'),
+        document.getElementById('otp2'),
+        document.getElementById('otp3'),
+        document.getElementById('otp4'),
+        document.getElementById('otp5')
+    ];
     const nextButton = document.getElementById('next-button');
     const email = localStorage.getItem('userEmail');
 
@@ -40,11 +42,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         window.location.href = '../Gender/index.html'; // Redirect to next page
                     } else {
                         const errorData = await createUserEntryResponse.json();
-                        showErrorMessage();
+                        showErrorMessage('Failed to create user entry.');
                     }
                 } else {
                     const errorData = await response.json();
-                    showErrorMessage();
+                    showErrorMessage(errorData.message || 'Failed to verify OTP. Please try again.');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -64,21 +66,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    inputs.forEach((input) => {
-        input.addEventListener("input", function (e) {
-            const target = e.target;
-            const val = target.value;
+    inputs.forEach((input, index) => {
+        input.addEventListener("input", function () {
+            const val = input.value;
 
             if (isNaN(val)) {
-                target.value = "";
+                input.value = "";
                 return;
             }
 
-            otp += val;
-            // target.value = '*';
+            otp = otp.slice(0, index) + val + otp.slice(index + 1);
 
             if (val !== "") {
-                const next = target.nextElementSibling;
+                const next = input.nextElementSibling;
                 if (next) {
                     next.focus();
                 }
@@ -86,14 +86,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         input.addEventListener("keyup", function (e) {
-            const target = e.target;
-            const key = e.key.toLowerCase();
-
-            if (key === "backspace" || key === "delete") {
-                const index = Array.from(inputs).indexOf(target);
+            if (e.key.toLowerCase() === "backspace" || e.key.toLowerCase() === "delete") {
                 otp = otp.slice(0, index) + otp.slice(index + 1);
-                target.value = "";
-                const prev = target.previousElementSibling;
+                input.value = "";
+                const prev = input.previousElementSibling;
                 if (prev) {
                     prev.focus();
                 }
@@ -108,18 +104,17 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function showErrorMessage(message) {
-    console.log('hi');
     const errorDiv = document.getElementById('error');
     const inp = document.getElementById('harshit');
     errorDiv.style.display = 'flex'; // Make sure the error div is visible
     inp.style.border = '3px solid red';
     const errorMessage = document.getElementById('error-message');
-    errorMessage.style.display='flex';
+    errorMessage.style.display = 'flex';
     errorMessage.style.color = 'red';
+    errorMessage.textContent = message;
 }
 
 function showSuccessMessage() {
-    console.log('hi');
     const errorDiv = document.getElementById('error');
     const successMessage = document.getElementById('error-message');
     const inp = document.getElementById('harshit');
@@ -130,4 +125,3 @@ function showSuccessMessage() {
     successMessage.innerHTML = '<img src="./Heart2.png" alt="Heart Icon" width="14" height="14"/> Email is Successfully verified';
     successMessage.style.color = 'green';
 }
-

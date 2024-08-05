@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
               });
 
               if (response.ok) {
-                  alert("submitted!");
+                //   alert("submitted!");
                   window.location.href = '../Financial/index.html';
               } else {
                   const errorData = await response.json();

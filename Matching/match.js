@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(data => {
-            alert("Success");
+            // alert("Success");
             console.log('Success:', data);
             window.location.href = '../agreement/index.html';
         })

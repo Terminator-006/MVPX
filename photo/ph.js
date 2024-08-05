@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
             FemalePicture: fileInputValues[3],
         };
 
-        alert("success!");
+        // alert("success!");
         window.location.href = '../Matching/index.html';
     });
 });

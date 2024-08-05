@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 if (response1.ok) {
-                    alert("submitted!");
+                    // alert("submitted!");
                     window.location.href = '../Reference details/index.html';
                 } else {
                     console.error('Error updating user information:', await response1.json());

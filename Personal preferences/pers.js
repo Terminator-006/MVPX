@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (response.ok) {
-                alert("Submitted successfully!");
+                // alert("Submitted successfully!");
                 window.location.href = '../photo/index.html';
             } else {
                 const errorData = await response.json();

@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
 
                     if (response1.ok) {
-                        alert("Submitted successfully!");
+                        // alert("Submitted successfully!");
                         window.location.href = '../Social Engagement/index.html';
                     } else {
                         const errorData = await response1.json();

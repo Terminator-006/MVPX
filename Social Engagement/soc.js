@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }).then(response1 => {
             if (response1.ok) {
-                alert("Submitted successfully!");
+                // alert("Submitted successfully!");
                 window.location.href = '../Personal preferences/index.html';
             } else {
                 return response1.json().then(errorData => {
