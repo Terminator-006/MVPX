@@ -10,8 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    // Add any required data for the POST request here
-                    email : localStorage.getItem("userEmail")
+                    email: localStorage.getItem("userEmail")
                 })
             });
 
@@ -31,4 +30,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Call the function to fetch the code
     fetchCode();
+
+    // Share functionality
+    document.querySelector('.button1').addEventListener('click', () => {
+        if (navigator.share) {
+            navigator.share({
+                text: `Here's your referral code: ${codeElement.textContent}`,
+            }).then(() => {
+                console.log('Text shared successfully!');
+            }).catch((error) => {
+                console.log('Error sharing text:', error);
+            });
+        } else {
+            console.log('Web Share API not supported.');
+        }
+    });
+
+    // Copy code functionality
+    document.querySelector('.button2').addEventListener('click', () => {
+        const code = codeElement.textContent;
+        if (code) {
+            navigator.clipboard.writeText(code).then(() => {
+                console.log('Code copied to clipboard!');
+                const copy = document.getElementById('copy');
+                copy.style.display = 'block';
+            }).catch((error) => {
+                console.error('Error copying code:', error);
+            });
+        } else {
+            console.log('No code to copy.');
+        }
+    });
 });

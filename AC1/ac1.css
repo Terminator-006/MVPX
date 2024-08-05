@@ -91,6 +91,7 @@
     font-weight: 600;
    
 }
+
 .button2{
     width: 540px;
     max-width: 540px;
@@ -106,6 +107,14 @@
     font-weight: 600;
     border:1px solid black;
    
+}
+
+.button1, .button2{
+  cursor:pointer;
+}
+
+.button-container span{
+  display:none;
 }
 
 
