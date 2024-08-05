@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return; // Prevent form submission if other fields are not valid
         }
 
+        // Directly submit and redirect if all fields are filled
         submitFormAndRedirect();
     });
 
