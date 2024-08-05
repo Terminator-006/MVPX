@@ -1,63 +1,118 @@
-// Select all input and select elements
-const howHeardSelect = document.getElementById('how-heard');
-const referencesInput = document.getElementById('references');
-const referenceNameInput = document.getElementById('reference-name');
-const referencePhoneInput = document.getElementById('reference-phone');
-const nextButton = document.getElementById('next-button');
-const popup = document.getElementById('overlay');
-const closePopupButton = document.getElementById('closePopup');
-const backpopup = document.getElementById('bgol');
-const errorDiv = document.getElementById('em-error2');
-
-let popupDisplayed = false; // Track whether the popup has been displayed
-
-// Function to check if all fields are valid
-function checkAllFieldsValid() {
-    return howHeardSelect.value !== '' &&
-           referencesInput.value !== '' &&
-           referenceNameInput.value !== '' &&
-           referencePhoneInput.value !== '';
-}
-
-// Event listeners for input and select fields
-howHeardSelect.addEventListener('input', () => {
-    if (howHeardSelect.value !== '') {
-        errorDiv.style.display = 'none';
-        howHeardSelect.style.border = '';
-    }
-});
-
-function addShakeEffect() {
-    howHeardSelect.classList.add('shake');
-}
-
-
 document.addEventListener('DOMContentLoaded', function () {
-    nextButton.addEventListener('click', async function (event) {
-        // Check if "How did you hear about Regnum?" field is filled
-        if (howHeardSelect.value === '') {
-            event.preventDefault();
-            addShakeEffect();
+    const inputs = document.querySelectorAll('.content input, .content select');
+    const nextButton = document.getElementById('next-button');
+    const howHeardSelect = document.getElementById('how-heard');
+    const referencesInput = document.getElementById('references');
+    const referenceNameInput = document.getElementById('reference-name');
+    const referencePhoneInput = document.getElementById('reference-phone');
+    const popup = document.getElementById('overlay');
+    const backgroundOverlay = document.getElementById('bgol');
+    const closePopupButton = document.getElementById('closePopup');
+    const error = document.getElementById('em-error2');
 
-            // Display error message and highlight the "How did you hear about Regnum?" field
-            errorDiv.style.display = 'flex';
-            howHeardSelect.style.border = '3px solid red';
-            return; // Prevent form submission if "How did you hear about Regnum?" field is not filled
-        }
+    let popupDisplayed = false;
 
-        // If the "How did you hear about Regnum?" field is filled but other fields are not valid
-        if (!checkAllFieldsValid()) {
-            event.preventDefault();
-
-            if (!popupDisplayed) {
-                // Display the popup
-                popup.style.display = 'flex';
-                backpopup.style.display = 'block'; // Show the background overlay
-                popupDisplayed = true; // Mark that the popup has been displayed
-                return; // Prevent form submission if fields are not valid
+    function checkInputs() {
+        inputs.forEach(input => {
+            if (input.value) {
+                input.classList.add('filled');
+            } else {
+                input.classList.remove('filled');
             }
+        });
+    }
+
+    inputs.forEach(input => {
+        input.addEventListener('input', checkInputs);
+
+        input.addEventListener('focus', function () {
+            input.style.border = '1px solid black';
+            input.style.borderRadius = '3px';
+        });
+
+        input.addEventListener('blur', function () {
+            if (input.value) {
+                input.style.borderRadius = '6px';
+                input.style.border = '2px solid grey';
+            } else {
+                input.style.border = '1px solid black';
+            }
+        });
+
+        if (input.tagName.toLowerCase() === 'select') {
+            input.addEventListener('change', function () {
+                if (input.value) {
+                    input.style.color = 'black';
+                    input.style.fontWeight = '600';
+                    input.style.border = '2px solid grey';
+                    input.classList.add('filled');
+                } else {
+                    input.style.color = 'grey';
+                    input.style.fontWeight = 'normal';
+                    input.style.border = '1px solid black';
+                    input.classList.remove('filled');
+                }
+            });
         }
 
+        if (input.type === 'date') {
+            input.addEventListener('change', function () {
+                if (input.value) {
+                    input.style.color = 'black';
+                    input.classList.add('filled');
+                } else {
+                    input.style.color = 'grey';
+                    input.classList.remove('filled');
+                }
+            });
+        }
+    });
+
+    // Hide error message when user starts typing in "How did you hear about Regnum?" input
+    howHeardSelect.addEventListener('input', function () {
+        error.style.display = 'none';
+        howHeardSelect.style.border = ''; // Reset the border if it's filled
+        howHeardSelect.classList.remove('shake'); // Remove shake class on input
+    });
+
+    nextButton.addEventListener('click', function () {
+        if (popupDisplayed) {
+            window.location.href = '../Social Engagement/index.html';
+            return;
+        }
+
+        // Check if "How did you hear about Regnum?" field is filled
+        if (!howHeardSelect.value) {
+            howHeardSelect.style.border = '2px solid red';
+            error.style.display = 'flex';
+            howHeardSelect.classList.add('shake'); // Add shake class to input
+            // Remove shake class after animation completes
+            setTimeout(() => {
+                howHeardSelect.classList.remove('shake');
+            }, 500);
+            return; // Prevent form submission if "How did you hear about Regnum?" is empty
+        } else {
+            howHeardSelect.style.border = ''; // Reset the border if it's filled
+            error.style.display = 'none';
+        }
+
+        // Check if any other inputs are empty
+        if (!howHeardSelect.value || !referencesInput.value || !referenceNameInput.value || !referencePhoneInput.value) {
+            if (!popupDisplayed) {
+                backgroundOverlay.style.display = 'flex';
+                popup.style.display = 'flex';
+                popupDisplayed = true;
+            } else {
+                // Submit the form and change the page
+                submitFormAndRedirect();
+            }
+            return; // Prevent form submission if other fields are not valid
+        }
+
+        submitFormAndRedirect();
+    });
+
+    function submitFormAndRedirect() {
         const data = {
             email: localStorage.getItem("userEmail"),
             Reference: referencesInput.value,
@@ -77,42 +132,37 @@ document.addEventListener('DOMContentLoaded', function () {
             ReferenceScore: score
         };
 
-        try {
-            const response = await fetch('https://regnum-backend-bice.vercel.app/update-details', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            });
-
+        fetch('https://regnum-backend-bice.vercel.app/update-details', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        }).then(response => {
             if (response.ok) {
-                try {
-                    const response1 = await fetch('https://regnum-backend-bice.vercel.app/update-score', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(scoreData),
-                    });
-
-                    if (response1.ok) {
-                        // alert("Submitted successfully!");
-                        window.location.href = '../Social Engagement/index.html';
-                    } else {
-                        const errorData = await response1.json();
-                        console.error('Error updating score:', errorData);
-                    }
-                } catch (error) {
-                    console.error('Error updating score:', error);
-                }
+                return fetch('https://regnum-backend-bice.vercel.app/update-score', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(scoreData),
+                });
             } else {
-                const errorData = await response.json();
-                console.error('Error updating user information:', errorData);
+                return response.json().then(errorData => {
+                    console.error('Error updating user information:', errorData);
+                });
             }
-        } catch (error) {
+        }).then(response1 => {
+            if (response1.ok) {
+                window.location.href = '../Social Engagement/index.html';
+            } else {
+                return response1.json().then(errorData => {
+                    console.error('Error updating score:', errorData);
+                });
+            }
+        }).catch(error => {
             console.error('Error updating user information:', error);
-        }
-    });
-});
+        });
+    }
 
-closePopupButton.addEventListener('click', function () {
-    popup.style.display = 'none';
-    backpopup.style.display = 'none'; // Hide the background overlay
+    closePopupButton.addEventListener('click', function () {
+        backgroundOverlay.style.display = 'none';
+        popup.style.display = 'none';
+    });
 });
