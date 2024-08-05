@@ -134,7 +134,7 @@ strong {
     height: 48px;
     border-radius: 100px;
     padding: 11px 10px 13px 10px;
-    background-color: grey;
+    background-color: black;
     color: white;
     border: none;
     font-size: 16px;
@@ -144,9 +144,7 @@ strong {
     cursor:pointer;
   }
  
-  button:hover{
-    background-color: black;
-  }
+  
 
 /* Media query for responsiveness */
 /* Media query for responsiveness */

@@ -219,6 +219,7 @@ html {
   right: 16px;
   transform: translateY(-50%);
   pointer-events: none;
+  background-color: white;
 }
 
 .dropdown-icon svg {
@@ -268,7 +269,7 @@ input[type=checkbox]:checked+label:before {
   background: url('../checked.png') left center no-repeat;
 }
 
-.overlay {
+/* .overlay {
   display: none;
   position: fixed;
   top: 50%;
@@ -342,7 +343,7 @@ input[type=checkbox]:checked+label:before {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
-}
+} */
 
 @media (max-width: 572px) {
   .heading {

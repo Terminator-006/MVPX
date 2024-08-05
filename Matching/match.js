@@ -41,12 +41,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fields.forEach(field => {
         field.addEventListener('input', checkAllFilled);
+        field.addEventListener('focus', function () {
+            field.style.border = '3px solid black';
+        });
+        field.addEventListener('blur', function () {
+            if (field.value) {
+                field.style.border = '2px solid grey';
+            } else {
+                field.style.border = '1px solid black';
+            }
+        });
     });
 
     function updateInputValue(input, dropdown) {
         const checkedBoxes = dropdown.querySelectorAll('input[type="checkbox"]:checked');
         const selectedValues = Array.from(checkedBoxes).map(checkbox => checkbox.value);
         input.value = selectedValues.join(', ');
+
+        if (input.value) {
+            input.style.color = 'black'; // Change font color to black
+            input.style.fontWeight = '600'; // Set font weight to 600
+            input.style.border = '2px solid grey'; // Set border to 2px solid grey
+        } else {
+            input.style.color = 'grey'; // Change font color to grey
+            input.style.fontWeight = 'normal'; // Set font weight to normal
+            input.style.border = '1px solid black'; // Reset border to original style if empty
+        }
 
         checkAllFilled();
     }

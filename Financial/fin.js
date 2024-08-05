@@ -1,29 +1,49 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const inputs = document.querySelectorAll('.content input');
+    
     const nextButton = document.getElementById('next-button');
+    const howHeardSelect = document.getElementById('how-heard');
+    const checklistInputs = document.querySelectorAll('.checklist input');
+    const incomeInput = document.getElementById('Income');
+    const luxuryItems = document.querySelectorAll('input[name="luxury-item"]');
 
-    inputs.forEach(input => {
-        input.addEventListener('input', function () {
-            // Check if all inputs are filled
-            let allFilled = true;
-            inputs.forEach(inp => {
-                if (!inp.value) {
-                    allFilled = false;
-                }
-            });
+    function checkAllInputsFilled() {
+        let allFilled = true;
 
-            // Enable or disable the button based on filled state
-            if (allFilled) {
-                nextButton.disabled = false;
-                nextButton.style.opacity = '1';
-                nextButton.style.cursor = 'pointer';
-            } else {
-                nextButton.disabled = true;
-                nextButton.style.opacity = '0.5';
-                nextButton.style.cursor = 'not-allowed';
+        checklistInputs.forEach(inp => {
+            if (!inp.value && inp.type !== 'checkbox') {
+                allFilled = false;
             }
+        });
 
-            // Add filled class if input is filled
+        const incomeFilled = incomeInput.value.trim() !== '';
+        const howHeardSelected = howHeardSelect.value.trim() !== '';
+        const anyLuxurySelected = Array.from(luxuryItems).some(item => item.checked);
+
+        if (allFilled && incomeFilled && howHeardSelected && anyLuxurySelected) {
+            nextButton.disabled = false;
+            nextButton.style.opacity = '1';
+            nextButton.style.cursor = 'pointer';
+        } else {
+            nextButton.disabled = true;
+            nextButton.style.opacity = '0.5';
+            nextButton.style.cursor = 'not-allowed';
+        }
+    }
+
+    checklistInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            checkAllInputsFilled();
+
+            if (input.value) {
+                input.classList.add('filled');
+            } else {
+                input.classList.remove('filled');
+            }
+        });
+
+        input.addEventListener('change', function() {
+            checkAllInputsFilled();
+
             if (input.value) {
                 input.classList.add('filled');
             } else {
@@ -77,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
+
     function getSelectedCheckboxes() {
         const selected = [];
         const checkboxes = document.querySelectorAll('input[name="luxury-item"]');
@@ -87,12 +108,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         return selected;
     }
+
     nextButton.addEventListener('click', async function () {
         const income = document.getElementById("Income").value;
         const selectedItems = getSelectedCheckboxes();
         let data = {};
         const email = localStorage.getItem("userEmail");
-        data["email"] = email
+        data["email"] = email;
         data["AnnualIncome"] = income;
         data["LuxuryAssets"] = selectedItems; 
         console.log(data);
@@ -100,31 +122,31 @@ document.addEventListener('DOMContentLoaded', function () {
         let score = 0;
         if (income > 1000000) {
             score = 10;
-          } else if (income > 500000) {
+        } else if (income > 500000) {
             score = 8;
-          } else if (income > 250000) {
+        } else if (income > 250000) {
             score = 5;
-          } else {
+        } else {
             score = 2;
-          }
-          const luxuryAssetsValues = {
+        }
+        const luxuryAssetsValues = {
             "Real Estate": 5,
             "Cars": 3,
             "Yachts": 7,
             "Jewellery": 2
-          };
-          let assetScore = 0;
-          selectedItems.forEach(asset => {
+        };
+        let assetScore = 0;
+        selectedItems.forEach(asset => {
             assetScore += luxuryAssetsValues[asset] || 0;
-          });
+        });
 
         try {
             const response = await fetch('https://regnum-backend-bice.vercel.app/update-details', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data),
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
             });
-    
+
             if (response.ok) {
                 const scoreData = {};
                 scoreData["email"] = email;
@@ -132,34 +154,32 @@ document.addEventListener('DOMContentLoaded', function () {
                 scoreData["LuxuryAssestsScore"] = assetScore;
                 try {
                     const response1 = await fetch('https://regnum-backend-bice.vercel.app/update-score', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify(scoreData),
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(scoreData),
                     });
             
                     if (response1.ok) {
-                        
-                      alert("submitted!");
-                      window.location.href = '../Reference details/index.html';
+                        alert("submitted!");
+                        window.location.href = '../Reference details/index.html';
                     } else {
-                      const errorData = await response1.json();
-                      console.error('Error updating user information:', errorData);
+                        const errorData = await response1.json();
+                        console.error('Error updating user information:', errorData);
                     }
-                  } catch (error) {
+                } catch (error) {
                     console.error('Error updating user information:', error);
-                  }
+                }
             } else {
-              const errorData = await response.json();
-              console.error('Error updating user information:', errorData);
+                const errorData = await response.json();
+                console.error('Error updating user information:', errorData);
             }
-          } catch (error) {
+        } catch (error) {
             console.error('Error updating user information:', error);
-          }
+        }
     });
-});
-document.addEventListener('DOMContentLoaded', function () {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
+    // Checkbox change handler
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function () {
             const checked = this.checked;
@@ -176,31 +196,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 svgChecked.style.display = 'none';
                 label.style.color = ''; // Reset to default color
             }
+            checkAllInputsFilled();
         });
     });
-});
 
+    // Event listeners for income input and how-heard select
+    incomeInput.addEventListener('input', checkAllInputsFilled);
+    howHeardSelect.addEventListener('change', checkAllInputsFilled);
 
-document.addEventListener('DOMContentLoaded', function () {
-    const incomeInput = document.getElementById('Income');
-    const luxuryItems = document.querySelectorAll('input[name="luxury-item"]');
-    const nextButton = document.getElementById('next-button');
-
-    function checkInputs() {
-        const incomeFilled = incomeInput.value.trim() !== '';
-        const anyLuxurySelected = Array.from(luxuryItems).some(item => item.checked);
-
-        const allFilled = incomeFilled && anyLuxurySelected;
-        nextButton.disabled = !allFilled;
-        nextButton.style.opacity = allFilled ? '1' : '0.5';
-        nextButton.style.cursor = allFilled ? 'pointer' : 'not-allowed';
-    }
-
-    incomeInput.addEventListener('input', checkInputs);
-
-    luxuryItems.forEach(item => {
-        item.addEventListener('change', checkInputs);
-    });
-
-    checkInputs(); // Initial check
+    // Initial input check for next button state
+    checkAllInputsFilled();
 });
