@@ -295,6 +295,7 @@ button:enabled {
   border-radius: 100px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family:'Victor Serif';
 }
 
 

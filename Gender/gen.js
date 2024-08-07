@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             else{
                 window.location.href = '../Information/index.html';
+                
             }            
             
         }

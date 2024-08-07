@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reference</title>
+
+    <link rel="stylesheet" href="../phone-number-validation-master/build/css/demo.css" />
+    <link rel="stylesheet" href="../phone-number-validation-master/build/css/intlTelInput.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <link rel="stylesheet" href="refer.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../phone-number-validation-master/build/js/intlTelInput.min.js"></script>
 </head>
 <body>
     <div class="back">
@@ -67,9 +74,29 @@
                   Please fill this out field
                 </p>
               </div>
-            <input type="text" id="references" placeholder="References or Endorsements" required />
             <input type="text" id="reference-name" placeholder="Name of Reference" required />
-            <input type="number" id="reference-phone" placeholder="Phone Number of Reference" required />
+            <input type="tel" placeholder="Phone Number of Reference" id="phone"  class="mobile"/>
+        <div class="em-error" id="em-error1">
+          <p class="danger-mess" id="error-message1">
+            <svg
+              class="danger-triangle"
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="12"
+              viewBox="0 0 14 12"
+              fill="none"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M8.51041 11.7023H7.51041L7.50441 10.7023H8.51041V11.7023ZM7.50908 9.84431H8.50908V6.97698H7.50908V9.84431ZM8.24241 2.13965H7.75641L1.43774 13.2256L1.87508 13.8603H14.0871L14.5624 13.235L8.24241 2.13965Z"
+                fill="#DC0000"
+              />
+            </svg>
+            Invalid phone number
+          </p>
+        </div>
+            <input type="text" id="references" placeholder="Referral Code" required />
         </div>
     </div>
     <div class="button-container">
@@ -91,5 +118,42 @@
     </div>
 
     <script src="refer.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var phoneInput = document.querySelector("#phone");
+            var errorDiv = document.querySelector("#em-error1");
+            var errorMessage = document.querySelector("#error-message1");
+
+            var iti = intlTelInput(phoneInput, {
+                initialCountry: "auto",
+                geoIpLookup: function(callback) {
+                    $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                        var countryCode = (resp && resp.country) ? resp.country : "us";
+                        callback(countryCode);
+                    });
+                },
+                utilsScript: "../phone-number-validation-master/build/js/utils.js" // just for formatting/placeholders etc
+            });
+
+            phoneInput.addEventListener('blur', function() {
+                if (phoneInput.value.trim()) {
+                    if (iti.isValidNumber()) {
+                        errorDiv.style.display = "none";
+                    } else {
+                        errorDiv.style.display = "block";
+                    }
+                }
+            });
+
+            document.querySelector("#next-button").addEventListener('click', function(e) {
+                if (phoneInput.value.trim() && !iti.isValidNumber()) {
+                    errorDiv.style.display = "block";
+                    e.preventDefault();
+                } else {
+                    errorDiv.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>

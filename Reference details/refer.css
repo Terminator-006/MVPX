@@ -126,6 +126,12 @@ html {
   transform: translateY(-50%);
   pointer-events: none; /* Ignore pointer events */
 }
+
+input.mobile{
+  width:540px;
+}
+
+
 .em-error {
   display: none;
   justify-content: flex-start;
@@ -277,6 +283,7 @@ button:enabled {
   border-radius: 100px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family:'Victor Serif';
 }
 
 
@@ -310,7 +317,7 @@ button:enabled {
   }
 
   .content input,
-  .content select {
+  .content select ,input.mobile {
       width: 94.6vw;
   }
 
