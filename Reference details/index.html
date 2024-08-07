@@ -71,7 +71,7 @@
                       fill="#DC0000"
                     />
                   </svg>
-                  Please fill this out field
+                  Please fill out this field 
                 </p>
               </div>
             <input type="text" id="reference-name" placeholder="Name of Reference" required />
@@ -154,6 +154,51 @@
                 }
             });
         });
+    </script>
+    <script> document.addEventListener("DOMContentLoaded", function() {
+        var phoneInput = document.querySelector("#phone");
+        var errorDiv = document.querySelector("#em-error1");
+        var errorMessage = document.querySelector("#error-message1");
+    
+        var iti = intlTelInput(phoneInput, {
+            initialCountry: "auto",
+            geoIpLookup: function(callback) {
+                $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                    var countryCode = (resp && resp.country) ? resp.country : "us";
+                    callback(countryCode);
+                });
+            },
+            utilsScript: "../phone-number-validation-master/build/js/utils.js" // just for formatting/placeholders etc
+        });
+    
+        phoneInput.addEventListener('blur', function() {
+            if (phoneInput.value.trim()) {
+                if (iti.isValidNumber()) {
+                    errorDiv.style.display = "none";
+                    phoneInput.classList.remove("shake");
+                } else {
+                    errorDiv.style.display = "block";
+                    phoneInput.classList.add("shake");
+                }
+            }
+        });
+    
+        document.querySelector("#next-button").addEventListener('click', function(e) {
+            if (phoneInput.value.trim() && !iti.isValidNumber()) {
+                errorDiv.style.display = "block";
+                phoneInput.classList.add("shake");
+                e.preventDefault();
+    
+                // Remove the shake class after animation completes
+                setTimeout(function() {
+                    phoneInput.classList.remove("shake");
+                }, 500); // The duration of the shake animation in milliseconds
+            } else {
+                errorDiv.style.display = "none";
+                phoneInput.classList.remove("shake");
+            }
+        });
+    });
     </script>
 </body>
 </html>

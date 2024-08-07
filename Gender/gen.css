@@ -36,7 +36,7 @@ body, html {
   max-width:540px;
   margin-top:56px;
   padding:16px;
-  margin-bottom: 140px;
+  /* margin-bottom: 140px; */
 }
 
 .heading{
@@ -262,7 +262,7 @@ button:enabled {
 
 }
 
-@media (min-height: 850px){
+@media (min-height: 750px){
   .button-container{
     position:fixed;
     

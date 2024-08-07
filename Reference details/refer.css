@@ -43,7 +43,7 @@ html {
   justify-content: center;
   text-align: center;
   margin-top: 56px;
-  margin-bottom: 184px;
+  margin-bottom: 64px;
   width: 540px;
   max-width: 540px;
   height: 472px;
@@ -342,7 +342,7 @@ button:enabled {
   }
 }
 
-@media (min-height:800px){
+@media (min-height:700px){
   .button-container{
     position: fixed;
   }

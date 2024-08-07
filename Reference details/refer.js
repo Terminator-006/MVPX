@@ -4,11 +4,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const howHeardSelect = document.getElementById('how-heard');
     const referencesInput = document.getElementById('references');
     const referenceNameInput = document.getElementById('reference-name');
-    const referencePhoneInput = document.getElementById('reference-phone');
+    const referencePhoneInput = document.getElementById('phone'); // Updated to match the id in your HTML
     const popup = document.getElementById('overlay');
     const backgroundOverlay = document.getElementById('bgol');
     const closePopupButton = document.getElementById('closePopup');
     const error = document.getElementById('em-error2');
+    const phoneErrorDiv = document.querySelector('#em-error1');
 
     let popupDisplayed = false;
 
@@ -75,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         howHeardSelect.classList.remove('shake'); // Remove shake class on input
     });
 
-    nextButton.addEventListener('click', function () {
+    nextButton.addEventListener('click', function (e) {
         if (popupDisplayed) {
             window.location.href = '../Social Engagement/index.html';
             return;
@@ -94,6 +95,19 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             howHeardSelect.style.border = ''; // Reset the border if it's filled
             error.style.display = 'none';
+        }
+
+        // Check if phone number is valid
+        if (referencePhoneInput.value.trim() && !iti.isValidNumber()) {
+            phoneErrorDiv.style.display = 'block';
+            referencePhoneInput.classList.add('shake');
+            referencePhoneInput.style.border = '3px solid red'; // Add red border
+            // Remove shake class after animation completes
+            setTimeout(() => {
+                referencePhoneInput.classList.remove('shake');
+            }, 500);
+            e.preventDefault(); // Prevent form submission if phone number is invalid
+            return;
         }
 
         // Check if any other inputs are empty
@@ -165,5 +179,34 @@ document.addEventListener('DOMContentLoaded', function () {
     closePopupButton.addEventListener('click', function () {
         backgroundOverlay.style.display = 'none';
         popup.style.display = 'none';
+    });
+
+    // Initialize intl-tel-input plugin
+    var iti = intlTelInput(referencePhoneInput, {
+        initialCountry: "auto",
+        geoIpLookup: function(callback) {
+            $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "us";
+                callback(countryCode);
+            });
+        },
+        utilsScript: "../phone-number-validation-master/build/js/utils.js" // just for formatting/placeholders etc
+    });
+
+    referencePhoneInput.addEventListener('blur', function() {
+        if (referencePhoneInput.value.trim()) {
+            if (iti.isValidNumber()) {
+                phoneErrorDiv.style.display = "none";
+                referencePhoneInput.classList.remove("shake");
+                referencePhoneInput.style.border = ''; // Reset the border if it's valid
+            } else {
+                phoneErrorDiv.style.display = "block";
+                referencePhoneInput.classList.add("shake");
+                referencePhoneInput.style.border = '3px solid red'; // Add red border
+                setTimeout(() => {
+                    referencePhoneInput.classList.remove("shake");
+                }, 500);
+            }
+        }
     });
 });

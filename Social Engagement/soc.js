@@ -72,12 +72,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let popupDisplayed = false;
     nextButton.addEventListener('click', function () {
-        const degreeSelect = document.querySelector('select:nth-of-type(1)').value;
-        const almaMaterInput = document.querySelector('input:nth-of-type(1)').value;
-        const membershipSelect = document.querySelector('select:nth-of-type(2)').value;
-        const registrationNumberInput = document.querySelector('input:nth-of-type(2)').value;
-        const exoticPlaceInput = document.querySelector('input:nth-of-type(3)').value;
-        const visaNumberInput = document.querySelector('input:nth-of-type(4)').value;
+        const degreeSelect = document.getElementById('degree-select').value;
+        const almaMaterInput = document.getElementById('alma-mater').value;
+        const membershipSelect = document.getElementById('membership-select').value;
+        const registrationNumberInput = document.getElementById('registration-number').value;
+        const exoticPlaceInput = document.getElementById('exotic-place').value;
+        const visaNumberInput = document.getElementById('visa-number').value;
         const email = localStorage.getItem("userEmail");
 
         // Check if Instagram ID input is empty and set border color to red if it is
@@ -102,7 +102,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 popup.style.display = 'flex';
                 popupDisplayed = true;
             } else {
-                // Submit the form and change the page
+                // Hide the popup if it's already been displayed once
+                backgroundOverlay.style.display = 'none';
+                popup.style.display = 'none';
                 submitFormAndRedirect();
             }
             return; // Prevent form submission if other fields are not valid
@@ -112,14 +114,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function submitFormAndRedirect() {
-        const degreeSelect = document.querySelector('select:nth-of-type(1)').value;
-        const almaMaterInput = document.querySelector('input:nth-of-type(1)').value;
-        const membershipSelect = document.querySelector('select:nth-of-type(2)').value;
-        const registrationNumberInput = document.querySelector('input:nth-of-type(2)').value;
-        const exoticPlaceInput = document.querySelector('input:nth-of-type(3)').value;
-        const visaNumberInput = document.querySelector('input:nth-of-type(4)').value;
+        const degreeSelect = document.getElementById('degree-select').value;
+        const almaMaterInput = document.getElementById('alma-mater').value;
+        const membershipSelect = document.getElementById('membership-select').value;
+        const registrationNumberInput = document.getElementById('registration-number').value;
+        const exoticPlaceInput = document.getElementById('exotic-place').value;
+        const visaNumberInput = document.getElementById('visa-number').value;
         const email = localStorage.getItem("userEmail");
-
         const data = {
             email: email,
             Degree: degreeSelect,
