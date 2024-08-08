@@ -149,6 +149,7 @@
   .resend{
     display: flex;
     position: absolute;
+    user-select: none;
     bottom: 100px;
     
   }
