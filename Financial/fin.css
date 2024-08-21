@@ -41,7 +41,7 @@ body, html {
     justify-content: center;
     text-align: center;
     margin-top: 56px;
-    margin-bottom:88px;
+    /* margin-bottom:88px; */
     width:540px;
     max-width:540px;
     height: 568px;
@@ -315,9 +315,10 @@ input.filled {
     font-weight: 600;
     border-color: grey;
   }
- @media(min-height:800px){
+ @media(min-height: 700px){
   .button-container{
     position:fixed;
+    padding-bottom:0;
   }
  }
 

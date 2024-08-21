@@ -42,7 +42,7 @@
     justify-content: center;
     text-align: center;
     margin-top: 56px;
-    margin-bottom: 180px;
+    /* margin-bottom: 180px; */
     width: 540px;
     max-width: 540px;
     height: 712px;
@@ -329,11 +329,17 @@
       max-width: 290px;
       width:85vw;
     }
+    .dropdown-content{
+      width:94.6vw;
+    }
+    .show {
+      margin-left: 0.55rem;
+    }
   }
   
   
   
-  @media (min-height: 876px){
+  @media (min-height: 800px){
     .button-container{
       position:fixed;
       

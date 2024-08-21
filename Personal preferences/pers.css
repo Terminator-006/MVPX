@@ -46,7 +46,7 @@ html {
   justify-content: center;
   text-align: center;
   margin-top: 56px;
-  margin-bottom: 180px;
+  /* margin-bottom: 180px; */
   width: 540px;
   max-width: 540px;
   height: 552px;
@@ -367,7 +367,8 @@ input[type=checkbox]:checked+label:before {
     width: 94.6vw;
   }
 
-  .button-container {
+
+  .button-container button {
     width: 94.6vw;
   }
 
@@ -394,7 +395,7 @@ input[type=checkbox]:checked+label:before {
   }
 }
 
-@media (min-height: 800px) {
+@media (min-height: 700px) {
   .button-container {
     position: fixed;
   }
